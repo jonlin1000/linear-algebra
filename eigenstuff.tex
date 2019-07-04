@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{def}{Definition}
+
+\operatorname{\Lop}{\mathcal{L}}
+
+\title{H and K notes on eigenstuff}
+\author{Jonathan Lin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+So the goal of eigen analysis and all that of linear operators is that we would like to analyze a linear operator and ``decompose it'' into some sort of simpler structure. The canonical example are diagonalizable matrices: if we can diagonalize a matrix we have definitely simplified the problem greatly.
+\section{All Preliminary Definitions and basic results}
+
+\begin{def}
+Let $V$ be a vector space over the field $F$ and let $T$ be a linear operator on $V$. An \textit{eigenvalue} of $T$ is a scalar $c$ of $F$ such that there is a non-zero vector $v$ in $V$ such that $T(v) = cv$. If $c$ is an eigenvalue of $T$ then any such vector where $T(v) = cv$ is called an \textit{eigenvector} of $T$ associated with $c$ and the collection of all $v$ such that $T(v) = cv$ is called the \textit{eigenspace} associated with $c$.
+\end{def}
+
+It is clear that the eigenspace associated with $c$ is a subspace of $V$.
+
+The eigenspace associated with $c$ is the null space of the linear transformation $T - cI$ (Forward and converse directions are very easy). Then an equivalent definition would be that $c$ is an eigenvalue of $T$ if $T - cI$ is not the zero subspace. In summary:
+
+\begin{thm}
+Let $T$ be a linear operator on a finite dimensional vector space $V$ and let $c$ be a scalar. The following are equivalent:
+\begin{enumerate}
+	\item $c$ is a characteristic value of $T$
+	\item $T - cI$ is not an invertible linear transformation
+	\item $\det(T - cI) = 0$.
+\end{enumerate}
+\end{thm}
+
+We define the characteristic polynomial of $T$ to be $\det(T - cI)$. In the next proposition we show that similar matrices have the same characteristic polynomial, so that the characteristic polynomial of a linear operator can be defined unambiguously.
+\begin{prop}
+	Similar matrices have the same characteristic polyomial.
+\end{prop}
+\begin{proof}
+	If $B = PAP^{-1}$, then
+	\begin{align*}
+		\det(B - cI) &= \det(PAP^{-1} - cI) \\
+						&= \det(P(A - cI)P^{-1}) \\
+						&= \det(A - cI)
+	\end{align*}
+	so we are done.
+\end{proof}
+
+If $V$ is an $n$ dimensional vector space and $T \in \Lop(V, V)$ there are $4$ things that could happen:
+\begin{itemize}
+	\item $T$ has no characteristic values.
+	\item $T$ has exactly $n$ characteristic values. 
+	\item $T$ has less than $n$ characteristic values, but a collection of eigenvalues spans $V$.
+	\item $T$ has less than $n$ characteristic values and no collection of eigenvalues spans $V$.
+\end{itemize}
+
+\begin{def}
+A linear operator $T$ is diagonalizable if there is a basis for $V$ where each vector in the basis is an eigenvector of $T$.
+\end{def}
+
+Suppose that $T$ is diagonalizable and $c_1, \dotsc, c_n$ the distinct eigenvalues of $T$. Then there is an ordered basis $B$ where $T$ is represented by a diagonal matrix where the scalars $c_i$ are on the main diagonal repeated a certain number of times.
+We deduce that the characteristic polynomial for $T$ is the product of linear factors $(\lambda - c_i)$ and hence the characteristic polynomial will have the form 
+\[ (x - c_1)^{d_1}\cdots(x - c_k)^{d_k}.\]
+
+\end{document}
