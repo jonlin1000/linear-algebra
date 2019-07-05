@@ -145,6 +145,11 @@ The minimal polynomial divides the characteristic polynomial. That is, if $p$ is
 There are a couple of proofs of this theorem.
 
 \begin{proof}
+The idea of the proof is that we move the perspective to the ring of polynomial operators of $T$. Using a determinant which we can see is $p(T)$, where $p$ is the characteristic polynomial, then we can more easily see that $T$ must be $0$.
 
+Let $K = F[T]$, that is, the set of polynomials in $T$ with coefficients in $F$. Choose a basis $v_1, \dotsc, v_n$ for $V$, and let $A$ be the matrix which represents $T$ in the given basis.
+
+Then we have that by the definition of matrix multiplication, that 
+\[T(v_i) = \sum_{j = 1}^nA_{ji}v_j \implies \sum_{j = 1}(\delta_{ij}T - A_{ji}I)v_j = 0.\]
 \end{proof}
 \end{document}
