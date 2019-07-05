@@ -10,9 +10,9 @@
 \newtheorem{prop}{Proposition}
 
 \theoremstyle{definition}
-\newtheorem{def}{Definition}
+\newtheorem{defn}{Definition}
 
-\operatorname{\Lop}{\mathcal{L}}
+\newcommand{\Lop}{\operatorname{\mathcal{L}}}
 
 \title{H and K notes on eigenstuff}
 \author{Jonathan Lin}
@@ -24,9 +24,9 @@
 So the goal of eigen analysis and all that of linear operators is that we would like to analyze a linear operator and ``decompose it'' into some sort of simpler structure. The canonical example are diagonalizable matrices: if we can diagonalize a matrix we have definitely simplified the problem greatly.
 \section{All Preliminary Definitions and basic results}
 
-\begin{def}
+\begin{defn}
 Let $V$ be a vector space over the field $F$ and let $T$ be a linear operator on $V$. An \textit{eigenvalue} of $T$ is a scalar $c$ of $F$ such that there is a non-zero vector $v$ in $V$ such that $T(v) = cv$. If $c$ is an eigenvalue of $T$ then any such vector where $T(v) = cv$ is called an \textit{eigenvector} of $T$ associated with $c$ and the collection of all $v$ such that $T(v) = cv$ is called the \textit{eigenspace} associated with $c$.
-\end{def}
+\end{defn}
 
 It is clear that the eigenspace associated with $c$ is a subspace of $V$.
 
@@ -63,12 +63,88 @@ If $V$ is an $n$ dimensional vector space and $T \in \Lop(V, V)$ there are $4$ t
 	\item $T$ has less than $n$ characteristic values and no collection of eigenvalues spans $V$.
 \end{itemize}
 
-\begin{def}
+\begin{defn}
 A linear operator $T$ is diagonalizable if there is a basis for $V$ where each vector in the basis is an eigenvector of $T$.
-\end{def}
+\end{defn}
 
 Suppose that $T$ is diagonalizable and $c_1, \dotsc, c_n$ the distinct eigenvalues of $T$. Then there is an ordered basis $B$ where $T$ is represented by a diagonal matrix where the scalars $c_i$ are on the main diagonal repeated a certain number of times.
 We deduce that the characteristic polynomial for $T$ is the product of linear factors $(\lambda - c_i)$ and hence the characteristic polynomial will have the form 
 \[ (x - c_1)^{d_1}\cdots(x - c_k)^{d_k}.\]
 
+Now we show that eigenvectors with different eigenvalues are mutually linearly independent.
+
+\begin{thm}
+Let $T$ be a linear operator on the finite-dimensional vector space $V$. Let $c_1,\dotsc,c_k$ be the distinct characteristic values of $T$ and let $W_i$ be the eigenspace of $c_i$. If $W = W_1 + \cdots + W_k$, then  
+\[\dim{W} = \dim{W_1} + \cdots + \dim{W_k}.\]
+
+In fact, if we let $B_i$ be a basis for $W_i$ (for each $i$) then we have that $B = (B_1, \dotsc, B_k)$ is basis for $W$.
+\end{thm}
+
+\begin{proof}
+It suffices to show that $W$ is a direct sum of the $W_i$, that is, if $w_i \in W_i$ and $w_1 + \cdots + w_k = 0$ then all the $w_i$ are $0$.
+
+Suppose $w_i \in W_i$ and that $w_1 + \cdots + w_k = 0$. For any polynomial $f$ we have that 
+\begin{align*}
+0 = f(T)0 &= f(T)w_1 + \cdots + f(T)w_k \\
+	&= f(c_1)w_1 + \cdots = f(c_k)w_k.
+\end{align*}
+
+If we choose a polynomial $f_i$ such that $f_i(c_j) = \delta_{ij}$ then it follows that $0 = f_i(c_i)w_i = w_i$. So we are done. For the last statement this just follows from properties of linear independence and the invariance of dimension.
+\end{proof}
+
+\begin{cor}
+The following statements are all equivalent:
+\begin{enumerate}
+	\item $T$ is diagonalizable.
+	\item The characteristic polynomial for $T$ is 
+	\[ (x - c_1)^{d_1}\cdots(x - c_k)^{d_k}.\]
+	and $dim{W_i} = d_i$ for $i$ from $1$ to $k$.
+	\item \[\dim{W} = \dim{W_1} + \cdots + \dim{W_k}.\]
+\end{enumerate}
+\end{cor}
+\begin{proof}
+This is pretty straightforward once you consider the previous lemma.
+\end{proof}
+
+Here is a matrix analogue of the previous theorem. Let $A$ be an $n \times n$ matrix with entries in a field $F$ and let $c_1, \dotsc, c_k$ be the distinct eigenvalues of $A$ in $F$. For each $i$ let $W_i$ be the null space os $A - c_iI$ and let $B_i$ be an ordered basis for $W_i$. Then we can string the bases to form the columns of a matrix $P$. Then the previous theorem implies that $A$ is similar to a diagonal matrix if and only if $P$ is a square matrix. When $P$ is square, $P$ is invertible and $P^{-1}AP$ is diagonal.
+
+\section{Polynomials which annihilate a linear operator $T$}
+
+Suppose $T$ is a linear operator on $V$. If $p$ is a polynomial in $F[x]$, then $p(T)$ is a linear operator on $V$. We say that $p$ annihilates $T$ if we have that $p(T) = 0$. It is easy to see that the collection of polynomials $p$ which annihilate $T$ are an ideal in $F[x]$.
+
+If $V$ is finite-dimensional, then it is not true that this ideal is the zero ideal. To see why, note that $\dim(\Lop(V, V)) = n^2$, so that the $n^2 + 1$ vectors $I, T, \dotsc, T^{n^2}$ are linearly dependent. So there are non-zero scalars such that
+\[a_0I + \cdots + a_{n^2}T^{n^2} = 0.\]
+We say the minimal polynomial for $T$ is the unique monic generator of the annihilators of $T$.
+
+Suppose that $A \in M_{n \times n}(F)$ and suppose that $F_1 \supset F$ is an extension field (or whatever correct term to use) of $F$. Then it is true that $A \in M_{n \times n}(F_1)$. We claim that the minimal polynomial is the same in both cases. To see why, we note that over $F$ the minimal polynomial is 
+\[f(x) = x^k + \sum_{j = 0}^{k - 1}a_jx^j.\] Expanding any polynomial at $A$ we obtain a system of $n^2$ homogeneous linear equations for $a_0, a_1, \dotsc, a_{k - 1}$. The coefficients for these lie in $F$ and it is clear that if a solution exists in $F_1$ a solution must also exist for $F$. So the two minimal polynomials are actually the same.
+
+Here is the important trick used here: Suppose $A$ and $b$ are a matrix and vector with entries of a field $F$ and suppose $Ax = b$ has some non-trivial solutions in some extension field $F_1$. Then it is clear that row-reduction will find a solution, all of whose entries are in $F$.
+
+\begin{thm}
+Suppose $T$ is a linear operator on a finite dimensional vector space $V$. Then the characteristic polynomial and the minimal polynomial for $T$ have the same roots disregarding multiplicities.
+\end{thm}
+
+\begin{proof}
+It suffices to show that $p(c) = 0$ if and only if $c$ is an eigenvalue of $T$. 
+
+First, suppose $p(c) = 0$. Then there is a unique polynomial $q$ such that \[p(x) = (x - c)q(x).\] Choose any vector $v$ such that $q(T)v \neq 0$ (this is possible because $p$ is the minimal polyonmial). Then we have that 
+\[0 = p(T)v = (T - cI)q(T)v\] which implies that $q(T)v$ is an eigenvector of $T$.
+
+Conversely, suppose that $c$ is an eigenvalue of $T$ (that is, $T(v) = cv$ for some vector $v$). Then we have that $0 = p(T)v = p(c)v$. Since we assume $v$ to be non-zero this implies that $p(c) = 0$, as desired. 
+\end{proof}
+
+We observe that $p$ must be the product of the linear polynomials which have eigenvalues as their roots.
+
+Here is an important theorem about the relationship between the minimal polynomial and the characteristic polynomial.
+
+\begin{thm}
+The minimal polynomial divides the characteristic polynomial. That is, if $p$ is the characteristic polynomial of some linear operator $T$ then $p(T) = 0$.
+\end{thm}
+
+There are a couple of proofs of this theorem.
+
+\begin{proof}
+
+\end{proof}
 \end{document}
