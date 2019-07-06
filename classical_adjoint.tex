@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newcommand{\Lop}{\operatorname{\mathcal{L}}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\adj}{\operatorname{adj}}
+
+\title{Notes on determinants and the classical adjoint}
+\author{Jonathan Lin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{prop}
+For any square matrix $A$, we have that $\det{A} = \det{A^T}$, where $A^T$ is the transpose of $A$.
+\end{prop}
+\begin{proof}
+If we let $A(x, y)$ denote the entry of $A$ in the $x$-th row and the $y$-th column, then we have that $A^T(i, \sigma(i)) = A(\sigma(i), i)$ by definition. Hence
+\begin{align*}
+	\det{A^T} &= \sum_{\sigma \in S_n}(\sgn{\sigma})A(\sigma(1), 1)\cdots A(\sigma(n), n) \\
+		&= \sum_{\sigma \in S_n}(\sgn{\sigma})A(1, \sigma^{-1}(1))\cdots A(n, \sigma^{-1}(n)) \\
+		&= \det{A}
+\end{align*}
+so we are done.
+\end{proof}
+
+\begin{prop}
+Row addition does not change the determinant.
+\end{prop}
+\begin{proof}
+Use the fact that the determinant is multilinear, then alternating.
+\end{proof}
+
+\begin{prop}
+Suppose $A \in M_{r \times r}(F)$, $C \in M_{s \times s}(F)$, $B \in M_{r \times s}(F)$. Then
+\[\det \begin{bmatrix} A & B \\ 0 & C\end{bmatrix} = \det(A)\det(C).\]
+\end{prop}
+\begin{proof}
+	Define the function $M(A, B, C)$ as the determinant of the above block matrix. By the properties of the determinant, $M$ is alternating and multilinear as a function of the rows of $C$. Hence $M(A, B, C) = \det(C)M(A, B, I)$. Using row reduction $M(A, B, I) = M(A, 0, I)$. Now $M(A, 0, I)$ is clearly alternating and multilinear as a function of the columns of $A$. Then $M(A, 0, I) = \det(A)M(I, 0, I) = \det(A)$. We conclude that $M(A, B, C) = \det(A)\det(C)$ and we are done.
+\end{proof}
+
+Define the cofactor matrix $A(i | j)$ to be the matrix obtained from $A$ by deleting the $i$th row and $j$th column. Let $C_{ij} = (-1)^{i + j}\det(A(i|j))$. It follows that $\det{A} = \sum_{i = 1}^n A_{ij}C_{ij}$ from the usual cofactor definition of the determinant.
+
+\begin{defn}
+The classical adjoint of $A$ is defined to be the transpose of the matrix of cofactors. That is,
+\[ \adj(A)(i, j) = C_{ji}.\]
+\end{defn}
+
+We have the identity 
+\[\sum_{i = 1}^nA_{ik}C_{ij} = \delta_{jk}\det{A} \]
+because the left hand side describes the determinant of the matrix $A$ if the $j$th column was replaced by the $k$th column.
+\end{document}
