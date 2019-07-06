@@ -13,6 +13,8 @@
 \newtheorem{defn}{Definition}
 
 \newcommand{\Lop}{\operatorname{\mathcal{L}}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Span}{\operatorname{span}}
 
 \title{H and K notes on eigenstuff}
 \author{Jonathan Lin}
@@ -151,5 +153,131 @@ Let $K = F[T]$, that is, the set of polynomials in $T$ with coefficients in $F$.
 
 Then we have that by the definition of matrix multiplication, that 
 \[T(v_i) = \sum_{j = 1}^nA_{ji}v_j \implies \sum_{j = 1}(\delta_{ij}T - A_{ji}I)v_j = 0.\]
+Let $B$ denote the element of $K^{n \times n}$ with entries
+\[B_{ij} = \delta_{ij}T - A_{ij}I.\]
+As an example, when $n = 2$, we have
+\[B = \begin{bmatrix}T - A_{11}I & -A_{21}I \\ -A_{12}I && T - A_{22}I\end{bmatrix} \]
+
+It is clear through both commutativity of $F[T]$ and the ring isomorphism $T \mapsto x$ to the ring $F[x]$ that $\det{B} = f(T)$ where $f$ is the characteristic polynomial of $T$.
+
+We would like to show now that $(\det{B})v_j = 0$ for all $1 \leq j \leq n$, this implies that $\det{B} = 0$ as desired.
+
+Let $\tilde{B}$ be the classical adjoint of $B$. By the definition of $B$, we have that
+\[\sum_{j = 1}^nB_{ij}v_j = 0.\] Doing some double sum shenanigans we have that 
+\begin{align*}
+0 &= \sum_{j = 1}^nB_{ij}v_j \\
+	 &= \sum_{j = 1}^n\tilde{B}_{ki}B_{ij}v_j \\
+	 &= \sum_{i = 1}^n\sum_{j = 1}^n\tilde{B}_{ki}B_{ij}v_j \\
+	 &= \sum_{j = 1}^n\sum_{i = 1}^n\tilde{B}_{ki}B_{ij}v_j \\
+	 &= \sum_{j = 1}^n\delta_{kj}\det{B}v_j \\
+	 &= \det{B}v_k,
+\end{align*}
+hence we are done.
 \end{proof}
+
+\section{Invariant Subspaces}
+
+\begin{defn}
+Let $T \in \Lop(V, V)$. Then $W$ is invariant under $T$ if for each vector $w$ in $W$, $T(w)$ is in $W$.
+\end{defn}
+
+Let $T \in \Lop(V, V)$, and let $U$ be any linear operator which commutes with $T$. Let $W = \im{U}$ and $N = \ker{U}$. Then both $U$ and $N$ are invariant under $T$. Suppose $w \in \im{U}$. Then $w = U(v)$ for some $v \in V$ so that $T(w) = T(U(v)) = U(T(v)) \in \im{U}$. Similarly, if $w \in N$, we have that $U(T(w)) = T(U(w)) = T(0) = 0$.
+
+For example, suppose $U = p(T)$ for some polynomial $p$. Then $UT = TU$. It follows that letting $p$ be the characteristic polynomial that the eigenspace of all eigenvectors with some eigenvalue $c$ is invariant under $T$, since explicitly if a vector is in the null space of $T - cI$ by the previous remarks it is invariant under $T$.
+
+Suppose $W$ is invariant under $T$. Then $T$ induces a linear functional $T_W \in \Lop(W, W)$ which is the same as $T$ but restricted to $W$. Suppose we choose an ordered basis $B = (v_1, \dotsc, v_n)$ where $B' = (v_1, \dotsc, v_r)$ is a basis for $W$. Letting $A = [T]_B$, we see that $A$ has the block form 
+\[\begin{bmatrix}B & C \\ 0 & D \end{bmatrix},\]
+where $B$ is the matrix $[T]_{B'}$. It follows from the block form that $\det{A - \lambda I} = \det{B - \lambda I}\det{D - \lambda I}$. Hence the characteristic polynomial of $T_W$ divides the characteristic polynomial of $T$. Also, since 
+\[A^k = \begin{bmatrix}B^k & C_k \\ 0 & D^k \end{bmatrix},\] for some $r \times n - r$ matrix $C_k$, it follows that any annihilator of $A$ will also annihilate $B$. Hence the minimal polynomial for $B$ divides the minimal polynomial for $A$.
+
+Instead of considering all polynomials which annihilate the whole space, or even a subspace, we can consider an even more general definition of polynomials whose evaluations at $T$ will map vector $v$ into some subspace $W$. Here is the rigorous definition.
+
+\begin{defn}
+Let $W$ be an invariant subspace for $T$ and let $v$ be a vector in $V$. Then the $T$-conductor of $v$, $S_T(v; W)$, is the set which consists of all polynomials $g \in F[x]$ such that $g(T)v \in W$. 
+\end{defn}
+
+When $W = \{0\}$ the $T$-conductor for $v$ is instead called the $T$-annihilator for $v$.
+
+\begin{prop}
+If $W$ is invariant under $T$ then $W$ is invariant under $p(T)$ for any polynomial $p \in F[x]$. Hence the conductor $S_T(v; W)$ is an ideal in $F[x]$.
+\end{prop}
+\begin{proof}
+For the first statement, it suffices to show that $W$ is invariant under $T^k$ for all $T$. This is done using induction.
+
+Now suppose $f, g \in S_T(v; W)$. Then $cf(T) + g(T) \in W$. Now suppose $g \in S_T(v; W)$. Then $f(T)(g(T)w) = fg(T)w \in W$. We conclude that $S_T(v; W)$ is an ideal.
+\end{proof}
+
+We call the unique monic generator for $S_T(v; W)$ the $T$-conductor of $v$ into $W$. This is used interchangeably with the set (since the set can be associated with its respective monic generator).
+
+\begin{prop}
+Let $V$ be a finite-dimensional vector space over $F$. Let $T$ be a linear operator on $V$ such that the minimal polynomial for $T$ is a product of linear factors $p(x) = (x - c_1)^{r_1}\cdots(x-c_k)^{r_k}$, with $c_i \in F$.
+
+Let $W$ be a proper subspace of $V$ which is invariant under $T$. There exists a vector $v \in V$ such that $v \not\in W$ and $(T - cI)v \in W$ for some eigenvalue $c$ of $T$.
+\end{prop}
+\begin{proof}
+The key idea in the proof is that the $T$-conductor for any vector divides the minimal polynomial. 
+
+Let $x$ be any vector not in $W$, ad let $g$ be the $T$-conductor of $x$ into $W$. Then $g \mid p$, where $p$ is the minimal polynomial of $T$. By assumption, $g$ cannot be constant, hence 
+\[g(\lambda) = (\lambda - c_1)^{e_1}\cdots(\lambda- c_n)^{e_n},\] where at least one of $e_1$ through $e_n$ is non-zero. Then $g(\lambda) = (\lambda - c_j)h(\lambda)$ for some $c_j$ and a unique $h$ (determined by $c_j$). By the definition of $g$, $h(T)x \not\in W$, but 
+\[(T - c_jI)(h(T)v) = g(T)v \in W\] so we are done.
+\end{proof}
+
+Using this proposition we can characterize the linear operators which admit an upper/lower triangular form with respect to some basis $B$.
+
+\begin{thm}
+Let $V$ be a finite dimensional vector space over the field $F$ and let $T$ be a linear operator on $V$. Then $T$ is triangulable if and only if the minimal polynmoial for $T$ splits over $F$.
+\end{thm}
+\begin{proof}
+Suppose the minimal polynomial factors $p(\lambda) = (\lambda - c_1)^{r_1}\cdots(\lambda - c_n)^{r_n}$.
+
+Apply the lemma above to ${0}$ to obtain a vector $v_1$ such that $(T - c_1I)v = 0$. Then, apply the lemma to ${v_1}$ and we obtain $v_2$ such that $(T - c_2I)v_2 = kv_1 \implies T(v_2) = c_2v_2 + k_1v_1$.
+
+At the $(k + 1)$th step of the algorithm we apply the lemma to $\{v_1, \dotsc, v_k\}$ to obtain $v_{k + 1}$ such that 
+\[(T - c_{j + 1}I)v_{k + 1} \in \Span(v_1, \dotsc, v_k).\]
+Note that this process generates subspaces 
+\[0 = W \subset W_1 \subset \cdots \subset W_n = V\] which are all invariant under $T$.
+
+Conversely, if $T$ is triangulable it must be that the characteristic polynomial is a product of linear subspaces (the determinant of a triangular matrix is the product of the diagonals).
+\end{proof}
+
+Here is a similar theorem, found in Axler. In Axler the only fields he works with are $\mathbb{R}$ and $\mathbb{C}$, so the theorem is framed in terms of a vector space over $\mathbb{C}$.
+
+\begin{thm}
+Suppose $V$ is a complex vector space and $T \in \Lop(V, V)$. Then $T$ has an upper-triangular matrix with respect to some basis of $V$.
+\end{thm}
+\begin{proof}
+The result is clear if $\dim{V} = 1$.
+
+Suppose $\dim{V} = n$ and the result holds for all vector spaces with dimension less than $n$. Let $\lambda$ be any eigenvalue of $T$, and let $U = \im(T - \lambda I)$. By rank-nullity it is clear that $T - \lambda I$ is not surjective. So $\dim{U} < \dim{V}$.
+
+It is also straightforward to see that $U$ is invariant under $T$. If $u \in U$ then $T(u) = (T - \lambda I)u + \lambda u \in U$. It follows that the restriction operator $T_U$ is well defined. By the induction hypothesis there is a basis $(u_1, \dotsc, u_m)$ of $U$ for which the striction is an upper triangular matrix.
+
+Extending $(u_1, \dotsc, u_m)$ to a basis $(u_1, \dotsc, u_m, v_1, \dotsc, v_n)$ of $V$, for $k$ we have $T(v_k) = (T - \lambda I)v_k + \lambda v_k$. Then
+\[T(v_k) \in \Span(u_1, \dotsc, u_m, v_1, \dotsc, v_k),\] as desired.
+\end{proof}
+
+Note that the second proof requires the result that all complex linear operators have at least one eigenvalue. This is covered in the proof in H and K because the splitting of the characteristic polynomial implies that the operator has at least one eigenvalue. Hence the first proof is actually more general than the second one.
+
+\begin{thm}
+A linear operator $T$ is diagonalizable if and only if the minimal polynomial splits into distinct linear factors.
+\end{thm}
+\begin{proof}
+Suppose $T$ is diagonalizable. Then it has a diagonal matrix with respect to some basis, where its diagonal entries represent all the eigenvalues of $\lambda$. It is clear that the polynomial $p(\lambda) = (\lambda - c_1)\cdots(\lambda - c_n)$ is a polynomial which annihilates $T$, because it is a matrix multiplication of diagonal matrices, with each entry having a product which is zero somewhere. Hence the total matrix product is just the zero matrix. It is clear that if $q$ is any polynomial which divides $p$, then some entries on the matrix will remain non-zero.
+
+Conversely, let $W$ be the subaspace spanned by all the eigenvectors, and suppose $W \neq V$. There is some $v \not\in W$ and some $\lambda_j$ which is an eigenvalue of $T$ such that 
+\[(T - \lambda_j I)(v) = w \in W.\]
+We have $w = w_1 + \cdots + w_k$ where $T(w_j) = \lambda_jw_j$. Hence we have
+\begin{align*}
+h(T)w &= h(T)w_1 + \cdots + h(T)w_k \\
+		 &= h(\lambda_1)w_1 + \cdots + h(\lambda_k)w_k.
+\end{align*}
+By the divisor and remainder theorems, respectively, there exist polynomials $p(x) = (x - \lambda_j)q(x)$ and $q(x) - q(\lambda_j) = (x - c_j)h(x)$. It follows that
+\begin{align*}
+& q(T) - q(c_j)I = (T - c_jI)h(T) \\
+		\implies & q(T)v - q(c_j)v = (T - c_jI)(h(T)v) = h(T)w.
+\end{align*}
+
+we have that $h(T)w \in W$ and $0 = p(T)v = (T - \lambda_j I)(q(T)v)$, so that $q(T)v \in W$. This and the above equation implies that $q(c_j)v \in W$. But this implies that $q(c_j) = 0$ since $v \not\in W$. So $p$ has multiple roots.
+\end{proof}
+
 \end{document}
