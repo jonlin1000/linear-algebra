@@ -11,6 +11,7 @@
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
+\newtheorem{example}{Example}
 
 \newcommand{\Lop}{\operatorname{\mathcal{L}}}
 \newcommand{\im}{\operatorname{im}}
@@ -279,6 +280,57 @@ By the divisor and remainder theorems, respectively, there exist polynomials $p(
 
 we have that $h(T)w \in W$ and $0 = p(T)v = (T - \lambda_j I)(q(T)v)$, so that $q(T)v \in W$. This and the above equation implies that $q(c_j)v \in W$. But this implies that $q(c_j) = 0$ since $v \not\in W$. So $p$ has multiple roots.
 \end{proof}
+
+\section{Direct Sums}
+
+One of the goals of this section is to describe a linear operator in terms of various subspaces that behave nicely with respect to the linear operator.
+
+\begin{defn}
+Let $W_1, \dotsc, W_k$ be subspaces of the vector space $V$. We say that they are \textit{independent} if 
+\[v_1 + \cdots + v_k = 0\] for $v_i \in W_i$ implies that all the $v_i$ are $0$.
+\end{defn}
+
+The meaning of independence basically means that the intersection of the sum of the other subspaces is the zero vector. See the ``iron-cross'' $\mathbb{R}^4$ example.
+
+If $W_1, \dotsc, W_k$ are independent, then we say that the subspace sum $W = W_1 + \cdots + W_k$ is \textit{direct} and we write
+\[W = W_1 \oplus \cdots \oplus W_k.\]
+
+\begin{example}
+Let $V$ be the space of all $n \times n$ matrices over $F$. Then $V$ is the direct sum of the subspace of all symmetric matrices and skew-symmetric matrices. The specific decomposition is
+\begin{align*}
+A &= A_1 + A_2 \\
+	 A_1 &= \frac{1}{2}(A + A^T) \\
+	 A_2 &= \frac{1}{2}(A - A^T)
+\end{align*}
+\end{example}
+
+Now our goal is to describe some linear operator $T$ in terms of several linear operators which have very nice properties.
+
+\begin{defn}
+If $V$ is a vector space, a \textit{projection} of $V$ is a linear operator $E$ such that $E^2 = E$.
+\end{defn}
+
+We will show that projections have certain nice properties associated with our original intuition of the term projection.
+
+For example, a vector $v$ is in the range of a projection $E$ if and only if $E(v) = v$. To see this, suppose $E(w) = v$. Then $v = E(w) = E^2(w) = E(v)$. Conversely, if $E(v) = v$, then $v$ is in the range of $E$. 
+
+If $R$ is the range of $E$ and $N$ is the kernel of $E$ we have that $V = R \oplus N$. To see why suppose $r + n = 0$ with $r \in R$ and $n \in N$. We get 
+\[0 = E(r + n) = E(r) + E(n) = E(r) = r \implies n = 0.\]
+
+Here's how to get an explicit formula for $v = r + n$. Taking $E$ we get $E(v) = E(r) + E(n) = r.$ So $E(v) = r$ and $n = v - r = v - E(v)$.
+
+From the above three facts we deduce the following. If $R$ and $N$ are subspaces such that $V = R \oplus N$ then there is a unique projection operator $E$ with range $R$ and null space $N$. To see this, I guess you need to define $E(v) = r$. Uniqueness is easy, if we had another one I think the subtraction is just the zero operator. You can also deduce that any projection is diagonalizable with eigenvalues one and zero.
+
+We can describe some direct sum decomposition in terms of projections in the following way. Suppose $V = W_1 \oplus \cdots \oplus W_k$. 
+
+To see this because every $v$ can be composed in terms of unique elements in the $W_i$ we can define a projection $E_i$ which sends $v$ to theunique element in $W_i$. Hence for every $v$ in $V$ we have that 
+\[v = E_1(v) + \cdots + E_k(v)\]
+or in terms of $\Lop(V, V)$,
+\[I = E_1 + \cdots + E_k.\]
+
+We can see that the projections all annihilate one another due to the properties of the direct sum.
+
+Conversely, if we have a set of $k$ operators with the above properties, we have described a set of subspaces whose direct sum is $V$.
 
 
 \end{document}
