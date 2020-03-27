@@ -1,0 +1,105 @@
+\subsection{Basic Ring Properties}
+
+\textit{For now, let $F$ be any arbitrary field (not an arbitrary ring)}. One might notice that if we take the so called \textbf{Fibonacci Power Series} 
+\[1 + x + 2x^2 + 3x^3 + 5x^4 + 8x^5 + 13x^6 + \cdots\] we can claim a certain ``formal'' equality
+\[1 + x + 2x^2 + 3x^3 + 5x^4 + \cdots = \frac{1}{1 - x - x^2}.\]
+Is this equation true in any sense? We might notice if we multiply by $1 - x - x^2$ on both sides and join common monomial terms we get the trivial equality $1 = 1$. But what exactly do we mean by this?
+
+The point of introducing formal power series is to make equalities like the above actual equalities in a certain very well-defined sense.
+
+\begin{definition}
+Let $F$ be a field. The formal power series $F[[x]]$ consists of sequences $(a_0, a_1, a_2, \dots)$ where the $a_i \in F$. We pretty much always represent these sequences by $a_0 + a_1x + a_2x^2 + \cdots$. Given two formal power series
+\[a = \sum_{n = 0}^{\infty}a_nx^n\] and
+\[b = \sum_{n = 0}^{\infty}b_nx^n,\] define their sum $a+b$ to be
+\[a + b = \sum_{n=0}^{\infty}(a_n + b_n)x^n\] and
+define their product $ab$ to be
+\[ab = \sum_{n = 0}^{\infty}\left(\sum_{k = 0}^na_kb_{n-k}\right)x^n\]
+
+We can also define things like the formal derivative, which is unambiguous no matter the field $F$ we are working in, since $n$ can be interpreted as $1 + 1 + \cdots + 1$ repeated $n$ times.
+\end{definition}
+
+\begin{proposition}
+The set of formal power series $F[[x]]$ forms a commutative ring (with unity) under the operations defined above.
+\end{proposition}
+\begin{proof}
+Hopefully the following claims are fairly clear:
+\begin{itemize}
+	\item The formal ``zero'' $0 + 0x + 0x^2 + \cdots$ is a zero element.
+	\item The formal ``one'' $1 + 0x + 0x^2 + \cdots$ is a multiplicative identity.
+	\item Every element of a formal power series has an additive inverse.
+	\item Addition and multiplication in $F[[x]]$ are associative and commutative. This follows from commutativity and associativity of the base field $F$.
+\end{itemize}
+
+The first, fourth and third claims make clear that this ring is an abelian group under addition. The second and fourth items make clear the sense that the multiplication operation in $F[[x]]$ has the appropriate ring structure. Distributivity is straightforward, though a little tedious, to check.
+\end{proof}
+
+In this ring, what is the so called group of units (that is, elements with a multiplicative inverse)?
+\begin{proposition}
+The formal power series $a_0 + a_1x + a_2x^2 + \cdots$ has no multiplicative inverse if $a_0 = 0$ and has a unique multiplicative inverse otherwise.
+\end{proposition}
+\begin{proof}
+Given any such formal power series $a_0 + a_1x + a_2x^2 + \cdots$ we will suppose that such an inverse exists. Then the relations
+
+\begin{align*}
+	a_0b_0 &= 1 \\
+	a_0b_1 + a_1b_0 &= 0 \\
+	&\vdots \\
+	\sum_{k = 0}^{n}a_kb_{n-k} &= 0 \\
+	&\vdots
+\end{align*}
+
+must hold. It is clear from the first equation that no such inverse exists if $a_0 = 0$. Now suppose $a_0 \neq 0$. Then from the general equation for $n$ we can solve for $b_n$ as 
+\[b_n = \begin{cases}\frac{1}{a_0} & n = 0 \\ -\frac{1}{a_0}\sum_{k = 1}^na_kb_{n-k} & \text{otherwise.}\end{cases}\]
+It follows inductively that if $a_0 \neq 0$ then $b_n$ is always well defined in terms of the $a_i$ and thus a well-defined inverse for $a_0 + a_1x + a_2x^2 + \cdots$ exists. Hence the claim follows, as desired.
+\end{proof}
+
+The following proposition shows that $F[[x]]$ is an integral domain, which is a particularly nice property.
+\begin{theorem}
+If $f$, $g$, and $h$ are formal power series in $R[[x]]$, where $R$ is an integral domain, then 
+\[fh = gh \implies f = g.\]
+So $R[[x]]$ is an integral domain.
+\end{theorem}
+\begin{proof}
+It suffices to prove that if $f$ and $g$ are non-zero power series then $fg \neq 0$ (for then, in the language of our original statement, we would have $(f-g)h = 0$ with $h \neq 0$, implying $f = g$). Let $f = a_0 + a_1x + a_2x^2 + \cdots$ and let $g = b_0 + b_1x + b_2x^2 + \cdots$. Let $i$ be the least index such that $a_i \neq 0$ and let $j$ be the least index such that $b_j \neq 0$. Then it follows that the coefficient of $x^{i + j}$ of $gh$ is
+\begin{align*}
+	\sum_{n = 0}^{i + j}a_kb_{i + j - k} &= \sum_{k = 0}^{i - 1}a_kb_{i + j - k} + a_ib_j + \sum_{k = i + 1}^{i + j}a_kb_{i + j - k} \\
+	&= \sum_{k = 0}^{i - 1}a_kb_{i + j - k} + a_ib_j + \sum_{k = 0}^{j - 1}a_{i + j - k}b_k \\
+&= 0 + a_ib_j + 0 \neq 0
+\end{align*}
+since $a_i \neq 0$, $b_j, \neq 0$, and $a_k = 0$ for all $k < i$ and $b_l = 0$ for all $l < j$ (by definition). So $fg$ is not the zero element, as desired.
+\end{proof}
+
+\subsection{Convergence of formal power series and an underlying topology on $F[[x]]$}
+
+One deficit of the ring of formal power series is that unlike the usual notion of power series, which have radius of convergence, there might not be a useful way to evaluate a power series outside of $x = 0$. Such evaluation might not make sense if $F$ is not $\mathbb{R}$ or $\mathbb{C}$. However, we still do want to say something about ``formal'' convergence of a power series. As an example, we would like to say that the sequence of power series $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the associated power series $a_0 + a_1x + a_2x^2 + \cdots$. To make this notion precise we will precisely define the notion of convergence (which will hopefully be enough for our purposes). Also note that convergence of sequences does not determine a topology if the sequence is not metrizable or first countable. 
+
+\begin{definition}
+We will say a sequence $r_1, r_2, r_3, \dots$ of elements in $F$ \textit{converges sharply} to some limit $s$ if $r_n$ is eventually constant and equal to $s$.
+\end{definition}
+
+\begin{definition}
+A seqeunce of formal power series $f_1, f_2, \dots$ converges to a formal power series $g$ if the sequence $(r_n^i)$ obtained by taking the $x^i$ coefficient of each $f_n$ converges sharply to the $x^i$ coefficient in $g$.
+\end{definition}
+
+For example, the sequence of formal power series'
+\begin{align*}
+&1 + x + x^2 + x^3 + \cdots \\
+&1 + 2x + 2x^2 + 2x^3 + \cdots \\
+&1 + 2x + 3x^2 + 3x^3 + \cdots \\
+&1 + 2x + 3x^2 + 4x^3 + \cdots \\
+\ddots
+\end{align*}
+converges to the formal power series $1 + 2x + 3x^2 + 4x^3 + 5x^4 + \cdots$. 
+
+\begin{lemma}
+In $F[[x]]$ the sequence $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the formal power series $a_0 + a_1 + a_2x^2 + \cdots$.
+\end{lemma}
+The proof is very simple.
+\begin{proof}
+For any $k \geq 0$, the degree $k$ term of $a_0 + \cdots + a_nx^n$ is equal to the degree term of $f$ for sufficiently large $n$ (specifically if $n \geq k$).
+\end{proof}
+
+\begin{theorem}
+Let $f_1, f_2, f_3, \dots$ be formal power series. Then the infinite series $f_1 + f_2 + f_3 + \cdots$ exists if and only if $\operatorname{ord}(f_k) \to \infty$ where 
+\[\operatorname{ord}(f) = \min(k \mid a_k \neq 0)\] (provided that $f = a_0 + a_1x + a_2x^2 + \cdots$).
+\end{theorem}
