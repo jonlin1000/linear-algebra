@@ -3,9 +3,9 @@
 \textit{For now, let $F$ be any arbitrary field (not an arbitrary ring)}. One might notice that if we take the so called \textbf{Fibonacci Power Series} 
 \[1 + x + 2x^2 + 3x^3 + 5x^4 + 8x^5 + 13x^6 + \cdots\] we can claim a certain ``formal'' equality
 \[1 + x + 2x^2 + 3x^3 + 5x^4 + \cdots = \frac{1}{1 - x - x^2}.\]
-Is this equation true in any sense? We might notice if we multiply by $1 - x - x^2$ on both sides and join common monomial terms we get the trivial equality $1 = 1$. But what exactly do we mean by this?
+Is this equation true in any sense? We might notice if we multiply by $1 - x - x^2$ on both sides and join common monomial terms we get the trivial equality $1 = 1$. But what exactly does this equality mean? Note that this equation is true in the traditional power series sense. It has a non-zero radius of convergence. But what about other power series and formulae?
 
-The point of introducing formal power series is to make equalities like the above actual equalities in a certain very well-defined sense.
+The point of introducing formal power series is to make equalities like the above actual equalities in a certain very well-defined sense, without worrying at all about issues like convergence, especially if the field we are working under is not the field of real or complex numbers.
 
 \begin{definition}
 Let $F$ be a field. The formal power series $F[[x]]$ consists of sequences $(a_0, a_1, a_2, \dots)$ where the $a_i \in F$. We pretty much always represent these sequences by $a_0 + a_1x + a_2x^2 + \cdots$. Given two formal power series
@@ -71,7 +71,7 @@ since $a_i \neq 0$, $b_j, \neq 0$, and $a_k = 0$ for all $k < i$ and $b_l = 0$ f
 
 \subsection{Convergence of formal power series and an underlying topology on $F[[x]]$}
 
-One deficit of the ring of formal power series is that unlike the usual notion of power series, which have radius of convergence, there might not be a useful way to evaluate a power series outside of $x = 0$. Such evaluation might not make sense if $F$ is not $\mathbb{R}$ or $\mathbb{C}$. However, we still do want to say something about ``formal'' convergence of a power series. As an example, we would like to say that the sequence of power series $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the associated power series $a_0 + a_1x + a_2x^2 + \cdots$. To make this notion precise we will precisely define the notion of convergence (which will hopefully be enough for our purposes). Also note that convergence of sequences does not determine a topology if the sequence is not metrizable or first countable. 
+One deficit of the ring of formal power series is that unlike the usual notion of power series, which have radius of convergence, there might not be a useful way to evaluate a power series outside of $x = 0$. Such evaluation might not make sense if $F$ is not $\mathbb{R}$ or $\mathbb{C}$. However, we still do want to say something about ``formal'' convergence of a power series. As an example, we would like to say that the sequence of power series $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the associated power series $a_0 + a_1x + a_2x^2 + \cdots$. To make this notion precise we will precisely define the notion of convergence (which will hopefully be enough for our purposes, since strictly speaking convergence of sequences does not determine a topology if your underlying space is not metrizable or first countable \textit{I might flesh this out a little bit later, considering that the convergence I've defined is just $R^{\omega}$ where $R$ gets the discrete topology and we endow the product with the product topology}). We will also use this notion of convergence to give a criterion about whether or not an infinite sum of \textit{formal power series} converges. 
 
 \begin{definition}
 We will say a sequence $r_1, r_2, r_3, \dots$ of elements in $F$ \textit{converges sharply} to some limit $s$ if $r_n$ is eventually constant and equal to $s$.
@@ -92,14 +92,72 @@ For example, the sequence of formal power series'
 converges to the formal power series $1 + 2x + 3x^2 + 4x^3 + 5x^4 + \cdots$. 
 
 \begin{lemma}
-In $F[[x]]$ the sequence $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the formal power series $a_0 + a_1 + a_2x^2 + \cdots$.
+In $F[[x]]$ the sequence $a_0, a_0 + a_1x, a_0 + a_1x + a_2x^2, \dots$ converges to the formal power series $f(x) = a_0 + a_1 + a_2x^2 + \cdots$.
 \end{lemma}
 The proof is very simple.
 \begin{proof}
-For any $k \geq 0$, the degree $k$ term of $a_0 + \cdots + a_nx^n$ is equal to the degree term of $f$ for sufficiently large $n$ (specifically if $n \geq k$).
+For any $k \geq 0$, the degree $k$ term of $a_0 + \cdots + a_nx^n$ is equal to the degree term of $f(x)$ for sufficiently large $n$ (specifically if $n \geq k$).
 \end{proof}
 
 \begin{theorem}
 Let $f_1, f_2, f_3, \dots$ be formal power series. Then the infinite series $f_1 + f_2 + f_3 + \cdots$ exists if and only if $\operatorname{ord}(f_k) \to \infty$ where 
 \[\operatorname{ord}(f) = \min(k \mid a_k \neq 0)\] (provided that $f = a_0 + a_1x + a_2x^2 + \cdots$).
 \end{theorem}
+\begin{proof}
+Let $p_n(f_k)$ denote the coefficient of $x^n$ in $f_k$. 
+
+First suppose $\operatorname{ord}(f_k) \to \infty$. This means that for any $n \geq 0$ there exists $N > 0$ such that $p_n(f_k) = 0$ for all $k \geq N$. It follows that $p_n(f_1 + \cdots + f_k)$ is constant for all $k \geq N$, implying for all $n$ that each coefficient converges sharply. Hence by definition $f_1 + f_2 + f_3 + \cdots$ exists.
+
+Conversely, suppose that the series $f_1 + f_2 + f_3 + \cdots$ exists. Then for all $n \geq 0$ there exists $N_n \geq 0$ such that $p_n(f_1 + \cdots + f_k)$ is constant for all $k \geq N_n$. But this implies that $p_n(f_k) = 0$ for all $k > N_n$ (because $p_n$ is actually a ring homomorphism). Taking $N = \max_{1 \leq i \leq n}(N_i)$, we see that $\operatorname{ord}(f_k) > n$ for $k \geq N$. It follows that $\operatorname{ord}(f_k) \to \infty$ as desired.
+\end{proof}
+
+Some examples which illustrate this theorem is appropriate. The sum of series 
+\[1 + (x + x^2 + x^3 + \cdots) + (x + x^2 + x^3 + \cdots)^3 + \cdots\]
+converges, since we can see that $\operatorname{ord}(f_k) = \operatorname{ord}(f_{k-1})$ for $k \geq 1$. However, the series 
+\[1 + \frac{1}{2} + \frac{1}{4} + \cdots\]
+does not, which is a potential limitation of the way we defined convergence. However, for most things we need these power series for (combinatorics) these limitations do not come up in practice.
+
+\begin{theorem}
+Suppose $a_i \to a$ and $b_i \to b$, where $a_i, b_i, a, b$ live in $F[[x]]$. Then we have that 
+\[a_i + b_i \to a + b\] and \[a_ib_i \to ab.\] It follows that $F[[x]]$ is a \textit{topological ring}: that is, the addition and multiplication operators are continuous operations that respect convergence.
+\end{theorem}
+
+\begin{proof}
+Omitted for now.
+\end{proof}
+
+\begin{theorem}
+Any series which is convergent in $F[[x]]$ is absolutely convergent. In particular, given any convergent infinite sum of power series we can rearrange any number of terms without changing the equality.
+\end{theorem}
+
+\begin{proof}
+Omitted for now.
+\end{proof}
+
+With the above facts, we are ready to do some interesting things with formal power series which are completely rigorous.
+
+\begin{theorem}
+Suppose $f \in F[[x]]$ is some power series where the constant term is $0$ (so $\operatorname{ord}(f) = 1$). Then 
+\[\frac{1}{1-f} = 1 + f + f^2 + f^3 + \cdots.\]
+\end{theorem}
+
+\begin{proof}
+First observe by hypothesis ($\ord(f) = 1$ and $f(0) = 0$) that the terms on the left hand and right hand sides are well defined formal power series.  By definition, $g$ is the limit of the power series
+\[g_n(x) = \sum_{k = 0}^n(f(x))^k.\] We observe that
+\[(1-f)(g_n) = 1 - f^{n + 1}.\] Since $\ord{f} \geq 1$ we can deduce that $f^{n + 1} \to 0$ and hence $(1-f)g_n \to 1$. But since $g_n \to g$ it follows that $(1-f)g = 1$, as desired.
+
+Alternatively, using absolute convergence we have that 
+\[(1-f)g = (1 - f) + (f - f^2) + (f^2 - f^3) + \cdots = 1,\] as desired.
+\end{proof}
+
+From this theorem we can deduce some interesting patterns. For example, we obtain the usual geometric series formula
+\[\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots.\] We can use this to generate power series for the inverses of $(1-x)^n$.
+
+\begin{alignat*}{4}
+\frac{1}{1-x} &= 1 &{}+&{} x  +&{}  x^2 +&{}  x^3 + &\cdots \\
+\frac{1}{(1-x)^2} &= 1 &{}+ &{} 2x + &{} 3x^2 + &{} 4x^3  + &\cdots \\
+\frac{1}{(1-x)^3} &=  1 &{}+ &{} 3x + &{} 6x^2 + &{} 10x^3  + &\cdots \\
+\frac{1}{(1-x)^3} &=  1 &{}+ &{} 4x + &{} 10x^2 + &{} 20x^3  + &\cdots
+\end{alignat*}
+
+Something very interesting is going on here! It appears as if the terms of these expansions line up with binomial coefficients. But why are the expansions like this?

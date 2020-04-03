@@ -1,9 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.27)  27 MAR 2020 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.27)  3 APR 2020 13:54
 entering extended mode
-**./notes_main.tex
-(notes_main.tex
+**C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics/notes_main.te
+x
+
+(C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics/notes_main.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06> (settings.tex
+L3 programming layer <2020-03-06>
+(C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics\settings.tex
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\size12.clo"
@@ -444,15 +447,15 @@ Package: accents 2006/05/12 v1.4 Math Accent Tools
 \c@proposition=\count275
 \c@theorem=\count276
 \c@lemma=\count277
-)
 \c@definition=\count278
-
+)
 ("C:\Program Files\MiKTeX 2.9\tex/latex/l3backend\l3backend-pdfmode.def"
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count279
 \l__pdf_internal_box=\box62
 )
-(notes_main.aux)
+(C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics\notes_main.aux
+)
 \openout1 = `notes_main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -527,9 +530,10 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 7.
 
-(fps.tex
+(C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics\fps.tex
 LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
- ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
@@ -546,21 +550,92 @@ This may cause the page layout to be inconsistent, however.
 [1{C:/Users/Jonathan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
-[2] [3]) 
+[2] [3] [4]
+! Missing number, treated as zero.
+<to be read again> 
+                   \protect 
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing = inserted for \ifnum.
+<to be read again> 
+                   }
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Extra }, or forgotten $.
+<recently read> }
+                 
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   >
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   \let 
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+
+! Package amsmath Error: \begin{alignat*} allowed only in paragraph mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 \frac
+           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.161 \end{alignat*}
+                    
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.161 \end{alignat*}
+                    
+? 
+) 
 AED: lastpage setting LastPage
-[4] (notes_main.aux)
+[5] (notes_main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 12922 strings out of 480898
- 248699 string characters out of 2908359
- 481482 words of memory out of 3000000
- 28579 multiletter control sequences out of 15000+200000
+ 12926 strings out of 480898
+ 249071 string characters out of 2908359
+ 481490 words of memory out of 3000000
+ 28581 multiletter control sequences out of 15000+200000
  541486 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,77p,870b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,12n,77p,1301b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Jonathan\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi6
 00\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx
 12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -574,9 +649,9 @@ s/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti
 12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on notes_main.pdf (4 pages, 137460 bytes).
+Output written on notes_main.pdf (5 pages, 145658 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
