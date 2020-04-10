@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.27)  3 APR 2020 13:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.3.27)  4 APR 2020 18:36
 entering extended mode
 **C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics/notes_main.te
 x
@@ -550,108 +550,89 @@ This may cause the page layout to be inconsistent, however.
 [1{C:/Users/Jonathan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
-[2] [3] [4]
-! Missing number, treated as zero.
+[2] [3] [4] [5])
+(C:/Users/Jonathan/Documents/School/linear-algebra/combinatorics\hlre.tex
+[6]
+! Display math should end with $$.
 <to be read again> 
-                   \protect 
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+                    
+l.25 ...ture of the formal power series $$F[[x]]$ 
+                                                  we will put a vector space...
+
 ? 
+[7]
+! Double superscript.
+l.71 ...) = A_1r_1^n + 1_2r_2^n + \cdots + A_dr^d^
+                                                  n,\] where the $r_i$ are t...
+
+? 
+[8])
+Runaway argument?
+{x^2 - 2x + 1).\] When $a = -1$ and $b = 1$ we can simplify to get th\ETC.
+! File ended while scanning use of \frac .
+<inserted text> 
+                \par 
+l.13 \input{hlre}
+                 
+? 
+
+AED: lastpage setting LastPage
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+l.14 \end{document}
+                   
 ? 
-! Missing number, treated as zero.
+! Display math should end with $$.
 <to be read again> 
-                   }
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+                   \par 
+l.14 \end{document}
+                   
 ? 
-! Missing = inserted for \ifnum.
-<to be read again> 
-                   }
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
-? 
-! Extra }, or forgotten $.
-<recently read> }
-                 
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   >
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   \let 
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
-? 
+[9]
 
-! Package amsmath Error: \begin{alignat*} allowed only in paragraph mode.
+! LaTeX Error: \begin{equation*} on input line 80 ended by \end{document}.
 
-See the amsmath package documentation for explanation.
+See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.157 \frac
-           {1}{1-x} &= 1 &{}+ x &{} + x^2 &{} +  x^3&{} + &\cdots \\
+l.14 \end{document}
+                   
 ? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.161 \end{alignat*}
-                    
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.161 \end{alignat*}
-                    
-? 
-) 
-AED: lastpage setting LastPage
-[5] (notes_main.aux)
+(notes_main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 80 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 12926 strings out of 480898
- 249071 string characters out of 2908359
+ 12929 strings out of 480898
+ 249219 string characters out of 2908359
  481490 words of memory out of 3000000
- 28581 multiletter control sequences out of 15000+200000
+ 28582 multiletter control sequences out of 15000+200000
  541486 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,77p,1301b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Jonathan\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi6
-00\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx
-12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti
-12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
->
-Output written on notes_main.pdf (5 pages, 145658 bytes).
+ <C:\Users\Jonathan\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jk
+nappen/ec/dpi600\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/s
+ymbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on notes_main.pdf (9 pages, 162428 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 88 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
