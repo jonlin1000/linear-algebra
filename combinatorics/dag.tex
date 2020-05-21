@@ -1,0 +1,34 @@
+Here is another problem to consider: How many length $n$ sequences of $0$'s and $1$'s are there such that no two ones appear consecutively? We might calculate them out for short sequences and we might discover that they are equal to a shift in the Fibonacci numbers. We will solve this by considering paths through a network. A sequence is specified by paths through the network. It should be clear that each sequence is specified by a path in the graph.
+
+(add the graph here)
+
+We will solve this essentially using dynamic programming. Suppose we would like to calculate the paths from the source vertices on the left to the sink vertex $s$. We can first calculate the number of paths from the vertices directly adjacent to $s$, for each of those vertices there is only one path. Then for the vertices directly left of those, for the top vertex we can go to either vertex, so there are $1 + 1$ paths to $s$. For the bottom vertex we can only travel to the top right vertex so there is only $1$ path to $s$. And so on.
+
+We might notice that we can represent the following operation by the matrix multiplication
+
+\[\begin{bmatrix} 1 & 1 \\ 1 & 0\end{bmatrix}\begin{bmatrix} 1 \\ 1\end{bmatrix}\] and we get the number of paths of the second right most vertices to $s$ and to $t$ respectively. Then we can iterate by using the matrix multiplication
+\[\begin{bmatrix} 1 & 1 \\ 1 & 0\end{bmatrix}^k\begin{bmatrix} 1 \\ 1\end{bmatrix}\] and the total number of paths to either $s$ or $t$ is given by
+\[\begin{bmatrix}1 & 1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & 0\end{bmatrix}\begin{bmatrix} 1 \\ 1\end{bmatrix}.\]
+In this section we will generalize this result sufficiently to work with graphs that are similar to the one above.
+
+\begin{definition}
+A \textbf{finite directed acyclic graph} (DAG) is a directed graph with only a finite number of paths between vertices and no infinite paths (no cycles). For vertices $x, y$ in $G$ we denote of paths from $x$ to $y$ by $N(x, y)$. Note that in general $N(x, y) \neq N(y, x)$ (and in fact, if $N(x, y) \neq 0$ it follows that $N(y, x) = 0$).
+\end{definition}
+
+\begin{theorem}
+Suppose $G$ is a finite $DAG$ and $x, y \in G$. Suppose that $B$ is a non-empty set of vertices with the property that every path from $x$ to $y$ passes through exactly one vertex in $B$. Then
+\[N(x, y) = \sum_{b \in B}N(x, b)N(b, y)\]
+More generally, suppose $A$ is the set of sources and $C$ is the set of sinks of some DAG, and that some set $B$ has the property such that for every path from $A$ to $C$ passes exactly once through $B$. Define the gransfer matrix $N(A, B)$ as the matrix whose $(a, b)$th entry is $N(a, b)$ and define $N(B, C)$ and $N(A, C)$ respectively. Then
+\[N(A, C) = N(A, B)N(B, C).\]
+\end{theorem}
+\begin{proof}
+The first result follows from the divide and conquer principle and the principle of multiplication. The second claim directly follows from the first essentially by the definition of matrix multiplication.
+\end{proof}
+
+\begin{theorem}
+Suppose the vertex set of the DAG $G$ is of the form $V(G) = V_0 \cup V_1 \cup \cdots \cup V_m$ where $V_i$ and $V_j$ are disjoint for $i \neq j$ and every edge goes from $V_i$ to $V_{i + 1}$ for some $i$. Suppose also that each path from $V_0$ to $V_m$ passes through exactly one vertex in each of the sets $V_j$, and that the pattern of connections from $V_i$ to $V_{i + 1}$ is independent of $i$. Then the transfer matrix from $V_i$ to $V_{i + 1}$ is independent of $i$, and the transfer matrix from $V_0$ to $V_m$ is equal to the $m$th power of this matrix.
+\end{theorem}
+
+\begin{theorem}
+Let $V$ be a semi-infinite (ie, extending infinitely rightwards but not leftwards) with the symmetry property of the last theorem. Fix a vertex $x$ in $V_0$ and $y_0, y_1, y_2$ where $y_j \in V_j$, respectively, which are all symmetrical vertices. The $N(x, y_0), N(x, y_1), \dots$ is a sequence that satisfies a $d$th order linear recurrence equation where $d = |V_i|$.
+\end{theorem}

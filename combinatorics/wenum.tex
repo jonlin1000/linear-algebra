@@ -1,0 +1,38 @@
+Previously, we looked at the number of ways to tile a $2 \times n$ rectangle with dominoes, and we found that the number of such tilings was a Fibonacci number. Here is another question: If we tile a $2 \times n$ rectangle with dominoes, then what fraction of the tiles will be vertical? This question is not exactly formed, as it depends on the tiling. Here is a better question: What is the expected number of tilings? Here's the magic technique that we will use: we will count with polynomials.
+
+\begin{definition}
+Given any $2 \times n$ tiling, give it weight $w^k$ if it has exactly $k$ vertical dominoes. The \textbf{number} of tilings by dominoes is defined as the sum of the weights. We denote this polynomial by $p_n(w)$. 
+\end{definition}
+
+For example, for a $2 \times 3$ tiling the number of tilings is $w^3 + 2w$. If we evaluate using $w = 1$ we get the actual \textit{number} of tilings. Here are the first few examples of tilings.
+
+\begin{align*}
+p_0(w) &= 1 (?) \\
+p_1(w) &= w \\
+p_2(w) &= w^2 + 1 \\
+p_3(2) &= w^3 + 2w.
+\end{align*}
+
+Can we find a recurrence for $p_n(w)$ similarly to how we found a recurrence for ordinary tilings of the $2 \times n$ rectangle? It turns out that we can. Here is the reasoning: We can decompose any $2 \times n$ tiling as a tiling where there is one vertical tile on the left or $2$ horizontal tiles on the right. But for each tiling of a $2 \times (n-1)$ rectangle the corresponding $2 \times n$ tiling will have one more vertical tile. For the $2 \times (n-2)$ rectangles no new vertical tiles are added. It follows that the recurrence for these polynomials is
+\[p_n(w) = wp_{n-1}(w) + p_{n-2}(w).\]
+This is the essence of weighted enumeration.
+
+We have observed above that $p_n(1)$ is the total number of tilings. Observe that $p_n'(1)$, the formal derivative of $p_n(w)$ evaluated at $1$, is the total number of \textbf{all} vertical tiles in all the $2\times n$ tilings. To see this we need only observe that $w^k$ represents a tiling with $k$ vertical dominoes. When you take the derivative you get $kw^{k-1}$, which evaluated at $w = 1$ gives you the number of vertical dominoes in that tiling.
+
+It follows that the average or expected number of vertical tiles in a $2 \times n$ tiling is $\frac{p_n'(1)}{p_n(1)}$. We already know a formula for $p_n(1)$ (as a Fibonacci number). What about the numerator? Here is the magic trick.
+
+Let 
+\begin{align*}
+P(w, x) &= \sum_{n = 0}^{\infty}p_n(w)x^n \\
+&= 1 + wx + (w^2 + 1)x^2 + (w^3 + 2w)x^3 + \cdots
+\end{align*}
+as a formal power series in $\mathbb{Q}[w][[x]]$. Using the recurrence for the weighted polynomials we can calculate that
+\[P(w, x)(q - wx - x^2) = 1 \implies P(w, x) = \frac{1}{1-wx - x^2}\] as the generating function for $P(w, x)$. Observe now (by differentiation with respect to $w$ in the formal power series) that
+\begin{align*}
+\sum_{n = 0}^{\infty}p_n'(w)x^n &= \frac{d}{dw}\sum_{n = 0}^{\infty}p_n(w)x^n \\
+&= \frac{d}{dw}P(w, x) \\
+&= \frac{x}{(1 - wx - x^2)^2}.
+\end{align*}
+
+So we get a formula for $p_n'(1)$. Letting $\alpha$ and $\beta$ be the reciprocal roots for $1 - x - x^2$ we get a formula of the form $A\alpha^n + B\beta^n + A'n\alpha^n + B'n\beta^n$ for $p_n'(1)$. Letting $\alpha$ be the larger root (in magnitude) this means $p_n'(1) \sim Cn\alpha^n$ for some constant $C$. It follows that approximately,
+\[\frac{p_n'(1)}{p_n(1)} = \frac{C_1n\alpha^n}{C_2\alpha^n} = Cn\] for some constant $C$.

@@ -1,0 +1,40 @@
+In this section we will prove what is known as the formal binomial theorem for power series. (To fill in later we will consider why we only consider power series of the form $(1 + xf(x))$ and why we can only hope to define a general exponentiation there).
+
+For any formal power series $f(x)$ define 
+\[(1  + xf(x))*r = 1 + rxf(x) + \left(\frac{r(r-1)}{2}\right)x^2f(x)^2 + \left(\frac{r(r-1)(r-2)}{3!}\right)x^3f(x)^3 + \cdots.\]
+
+\begin{theorem}
+The following statements are all true:
+\begin{enumerate}
+  \item The right hand side converges in the ring of formal power series.
+  \item When $r \geq 0$ is an integer, then $(1 + xf(x))*r = (1 + xf(x))^r)$.
+  \item We have that for all $r$ and $s$,
+  \[((1 + xf(x))*r)((1 + xf(x)) * s) = (1 + xf(x))*(r + s).\]
+  \item When $r < 0$ is an integer, then $(1 + xf(x))*r = (1 + f(x))^r$.
+  \item For all $r$ and $s$, \[((1 + xf(x))*r)*s = (1 + xf(x))*(rs)\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The first statement follows readily from the fact that each succeeding term has order greater than the previous. The second statement is a reformulation of the usual binomial theorem.
+
+For the third statement, for any integer $k \geq 0$, the coefficient of $f(x)^kx^k$ in the absolute product is a polynomial $P_k(r,s)$ of degree $k$ in $r$ and $s$. For example, when $k = 2$, we have that this coefficient is
+\[1\cdot\left(\frac{s(s-1)}{2}\right) + rs + \left(\frac{r(r-1)}{2}\right)\cdot 1.\]
+
+Likewise the coefficient of $x^kf(x)^k$ in $(1 + xf(x))*(r + s)$ is a polynomial $Q_k(r,s)$ of degree $k$ in $r$ and $s$. We know that $P_k(r, s) = Q_k(r, s)$ when $r, s \in \mathbb{N}$. So $P_k = Q_k$ for infinitely many points. So we use a $k + 1$ point equality argument $3$ times in order to conclude that $P_k = Q_k$ in general. This implies equality of the power series.
+
+The fourth statement follows directly from the second and third statements.
+
+The fifth statement has an argument which is the exact same reasoning as the third statement.
+
+\end{proof}
+
+By this theorem, we can introduce the convention of just writing $g(x)*r$ as $g(x)^r$ for any $g$ with $g(0) = 1$. In particular we have
+\begin{align*}
+(1 - x)^{-m} &= 1 + (-m)(-x) + \left(\frac{(-m)(-m - 1)}{2}\right)(-x)^2 + \left(\frac{-m(-m-1)(-m -2)}{3!}\right)(-x)^3  + \cdots \\
+&= 1 + mx + \frac{m(m+1)}{2}x^2 + \frac{m(m + 1)(m + 2)}{6}x^3 + \cdots \\
+&= \sum_{n = 0}^{\infty}\binom{m + n - 1}{n}x^n.
+\end{align*}
+
+This explains the connection with expansions of $(1 - x)^{-m}$ and binomial coefficients that we saw earlier.
+

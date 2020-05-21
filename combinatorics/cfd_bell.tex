@@ -1,0 +1,51 @@
+In this section we investigate some special properties of the basis
+\[1, x, \frac{x(x-1)}{2}, \frac{x(x-1)(x-2)}{6}, \dots\] of polynomial space.
+
+Suppose for the first example that we're given a sequence
+\[0, 1, 5, 15, 34, 65, 111, \dots\] and we suspect its formula is given by a cubic polynomial. How do we find it?
+
+One primitive way is to use undetermined coefficients, or Lagrange interpolation. Here is another way. First, we observe that if $f(n)$ is a polynomial of degree $d$, then $(T - I)f$ is degree $d - 1$. So we can construct a difference table.
+
+(difference table here).
+
+Conversely, if the $n$th difference is $0$, then $f$ is an $n$th degree polynomial and lower. We observe the terms on the very right of the difference table. If we look at the difference tables for the polynomials above, we find that we can represent our cubic polynomial using this basis in a natural way. It will follow that
+\[p(x) = 0\cdot 1 + 1 \cdot x + 3\left(\frac{x(x-1)}{2}\right) + 3\left(\frac{x(x-1)(x-2)}{6}\right) = \frac{x^3 + x}{2}.\]
+
+This basis above is called the basis of falling factorials. We'll denote the $k$th element ($k$ starts index at $0$) as $(x)_k$.
+
+The falling factorial polynomials form an integral basis in $P[x]$ with the property that $p(n)$ is an integer for all integers $n$. In other words, any polynomial $p(n)$ can be represented as a linear combination of finitely many basis polynomials where the coefficients are integers.
+
+\begin{proof}
+The converse is hopefully obvious, we'll prove the forward direction. Suppose $p(n)$ is an integer for all $n$. Then 
+\[p(x) = a_0(x)_0 + a_1(x)_1 + \cdots + a_n(x)_n.\]
+The idea is that plugging in $x = 0$ we will find that $a_0 \in \mathbb{Z}$. Then we continue inductively to deduce that $a_j \in \mathbb{Z}$ for all coefficients $a_j$.
+\end{proof}
+
+\subsection{Application of the falling factorial basis: Dobinski's formula for the Bell Numbers}
+
+Let $B_n$ be the number of \textbf{partitions} of an $n$-element set (called Bell numbers). This is the same thing as dividing the set into chunks such that every element is in exactly one chunk. For example, when $n = 3$, $S = \{a,b,c\}$ we can represent the partitions as follows:
+\[\{\{a,b,c\}\}, \{\{a,b\},\{c\}\}, \{\{a,c\},\{b\}\}, \{\{c,b\},\{a\}\}, \{\{a\},\{b\},\{c\}\}.\]
+It is easy to prove that I've listed all of them.
+
+So it's simple to show that $B_3 = 5$, $B_2 = 2$, and $B_1 = 1$. We would like to try and find a formula for the $B_n$. This will involve a couple of magic tricks.
+
+The first thing to do is to consider a seemingly unrelated question: given an $n$ element set $N$ and an $m$ element set $M$, how many functions $f: N \to M$ are there? We can use a left-right approach here. First we notice that the answer is obviously $m^n$. Alternatively, we might notice that given any function $f:N \to M$ we can create a partition $\pi$ of $N$ by taking the non-empty preimages $f^{-1}(\{i\}), i \in M$. 
+
+Let $S_{n, k}$ represent the number of partitions of $N$ of size $k$. Note that any such partition does not uniquely determine a function $f$. We also need to determine the values in $M$ which each partition is sent to, there are $m!/(m-k)!$ such ways we can do this for a partition of size $k$. Hence we obtain the identity
+
+\[m^n = \sum_{k = 1}^{n}S_{n,k}\frac{m!}{(m-k)!}.\]
+
+Since this is true for all positive integer values of $m$ and it is a polynomial identity we conclude it actually holds for general $x$ and hence we have the formula 
+\[x^n = \sum_{k = 1}^{n}S_{n,k}[x]_k,\]
+where $[x]_0 = 1, [x]_k = x(x-1)(\cdots)(x - k + 1).$
+
+We observe that the set of polynomials $[x]_k$ actually form a basis for the set of real valued polynomials (note that as defined $[x]_k$ has degree $k$). So we might define a linear functional $L: \mathbb{R}[x] \to \mathbb{R}$ as being the unique functional with the property that
+\[L([x]_k) = 1\] for all $k$. Applying $L$ to the formula above we get
+\[L(x^n) = \sum_{k = 1}^nS_{n,k} = B_n,\] for the $S_{n,k}$ counts the number of partitions of $N$ of size $k$, and we are summing over all the possible values of $k$.
+
+Here is where the real magic happens: We observe that 
+\[L([x]_n) = 1 = \frac{1}{e}e = \frac{1}{e}\sum_{k = 0}^{\infty}\frac{1}{k!} = \frac{1}{e}\sum_{k = 0}^{\infty}\frac{[k]_n}{k!}.\]
+To justify the last equality just observe that the infinite sum is just the previous one shifted over $n$ places to the right (using the cancellation of $[k]_n$ and $k!$). It follows by the properties of the basis and the fact that any polynomial $p(x)$ is a finite sum of the basis elements $[x_k]$ that we get
+\[L(p(x)) = \frac{1}{e}\sum_{k = 0}^{\infty}\frac{p(k)}{k!}.\] In particular, when $p(x) = x^n$, we get
+\[B_n = L(x^n) = \frac{1}{e}\sum_{k = 0}^{\infty}\frac{k^n}{k!}\]
+which is called \textit{Dobinski's formula} for the Bell numbers.
