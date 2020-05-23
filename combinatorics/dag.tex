@@ -26,9 +26,30 @@ The first result follows from the divide and conquer principle and the principle
 \end{proof}
 
 \begin{theorem}
-Suppose the vertex set of the DAG $G$ is of the form $V(G) = V_0 \cup V_1 \cup \cdots \cup V_m$ where $V_i$ and $V_j$ are disjoint for $i \neq j$ and every edge goes from $V_i$ to $V_{i + 1}$ for some $i$. Suppose also that each path from $V_0$ to $V_m$ passes through exactly one vertex in each of the sets $V_j$, and that the pattern of connections from $V_i$ to $V_{i + 1}$ is independent of $i$. Then the transfer matrix from $V_i$ to $V_{i + 1}$ is independent of $i$, and the transfer matrix from $V_0$ to $V_m$ is equal to the $m$th power of this matrix.
+Suppose the vertex set of the DAG $G$ is of the form $V(G) = V_0 \cup V_1 \cup \cdots \cup V_m$ where $V_i$ and $V_j$ are disjoint for $i \neq j$ and every edge goes from $V_i$ to $V_{i + 1}$ for some $i$. Suppose also that each path from $V_0$ to $V_m$ passes through exactly one vertex in each of the sets $V_j$, and that the pattern of connections from $V_i$ to $V_{i + 1}$ is independent of $i$. That is, there exists a graph isomorphism $f: V \to (V_1 \cup V_2 \cup \cdots)$, such that 
+\[V_0 \mapsto V_1 \mapsto V_2 \mapsto \cdots.\]
+ Then the transfer matrix from $V_i$ to $V_{i + 1}$ is independent of $i$, and the transfer matrix from $V_0$ to $V_m$ is equal to the $m$th power of this matrix.
 \end{theorem}
 
 \begin{theorem}
 Let $V$ be a semi-infinite (ie, extending infinitely rightwards but not leftwards) with the symmetry property of the last theorem. Fix a vertex $x$ in $V_0$ and $y_0, y_1, y_2$ where $y_j \in V_j$, respectively, which are all symmetrical vertices. The $N(x, y_0), N(x, y_1), \dots$ is a sequence that satisfies a $d$th order linear recurrence equation where $d = |V_i|$.
 \end{theorem}
+
+To prove this we will use the Cayley Hamilton
+
+\begin{theorem}
+Let $M$ be a matrix with characteristic polynomial $p(x) = \det(xI - M)$. Then $p(M) = 0$.
+\end{theorem}
+
+We will not prove this theorem, it is a fundamental theorem of linear algebra. A nice computation to do is to directly calculate it in the case when $M$ is a $2 \times 2$ matrix. Here is a corollary which can be thought of as a combinatorial interpretation of the Cayley Hamilton Theorem.
+
+\begin{corollary}
+Write $p(t) = t^m + a_{m-1}t^{m-1} + \cdots + a_0$ where $p(t)$ is as above. Then the sequence of matrices $I, M, M^2, M^3, \dots$ satisfy a linear recurrence relation
+\[M^{n + m} + a_{m-1}M^{n + m - 1} + \cdots + a_0M^{n} = 0\]
+for all $n \geq 0$.
+\end{corollary}
+
+It can clearly be seen that each entry of the matrix as a component also satisfies this recurrence relation. Now we are ready to prove the theorems above:
+\begin{proof}
+Let $M$ be the transfer matrix of connections between $V_0$ and $V_1$ ($M$ is also the transfer matrix from $V_i$ to $V_{i + 1}$). Then $N(x, y_k)$ is the $(x, y)$th entry of $M^k$ (by definition of the transfer matrix). Applying the corollary above gives us the desired results.
+\end{proof}

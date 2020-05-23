@@ -1,0 +1,21 @@
+In these notes we have introduced (one implicitly, one explicitly) two different bases for the vector space of polynomials $P[x]$. First we have the standard monomial basis
+\[1, x, x^2, x^3, \dots\]
+and then we introduced the falling factorial basis
+\[1, (x), (x)_2, (x)_3, \dots\]
+where 
+\[(x)_k = x(x-1)(x-2)\cdots(x-k+1).\]
+
+It is clear that both sets of polynomials form bases. Moreover, due to the nature of the monomial basis, the change of basis ``matrix'' (in the sense of an infinite matrix) is upper triangular (so working with it we have no analytic difficulties). It makes sense to consider the coefficients of a change of basis formula. We first define $s(n, k)$ to be the coefficients such that 
+\[(x)_n = \sum_{k = 0}^{\infty}s(n,k)x^k\] is true. Note that $s(n,k) = 0$ if $k > n$. Similarly, we can write
+\[x^n = \sum_{k = 0}^{\infty}S(n,k)(x)_k.\] Note as well that $S(n, k) = 0$ if $k > n$. If we substitute the first equation into the second we get
+
+\begin{align*}
+x^n &= \sum_{k = 0}^{\infty}S(n, k)(x)_k \\
+&= \sum_{k = 0}^{\infty}S(n, k)\sum_{j = 0}^{\infty}s(k, j)x^j \\
+&= \sum_{j = 0}^{\infty}\left[\sum_{k = 0}^{\infty}S(n, k)s(k, j)\right]x^j.
+\end{align*}
+
+By linear independence it follows that 
+\[\sum_{k = 0}^{\infty}S(n, k)s(k, j) = \begin{cases}1 & n = j \\ 0 & \text{otherwise}\end{cases}.\]
+
+This is perhaps not so surprising on its own: This actually always happens when you consider any change of basis from one basis back to itself. What will be surprising is that $s$ and $S$ have combinatorial meaning. For example, when we derived a formula for the Bell Numbers, we realized $S(n, k)$ as the number of ways of partitioning $\{1, \dots, n\}$ into exactly $k$ disjoint subsets. We will understand the combinatorial meaning of these formulas soon enough.
