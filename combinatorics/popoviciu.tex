@@ -1,0 +1,34 @@
+Given a linear recurrence relation, we can run it backwards over the integers to make it over all the integers, instead of just the natural numbers. For example, for the Fibonacci sequence it looks like
+\[\dots, 5, -3, 2, -1, 1, 0, 1, 1, 2, 3, 5, \dots.\]
+
+Notice that the left half looks suspiciously similar to the right half. And in fact, for any linear recurrence relation it will always turn out like this! This is known as \textbf{Popoviciu's Lemma}:
+
+\begin{theorem}
+Let $d$ be a positive integer and $a_1, \dots, a_d$ be complex coefficients with $a_d \neq 0$. Suppose $f:\mathbb{Z} \to \mathbb{C}$ satisfies 
+\[f(n + d) + a_1f(n + d - 1) + \cdots + a_df(n) = 0\]
+for all $n \in \mathbb{Z}$. Then
+\[F(x) = \sum_{n \geq 0}f(n)x^n\]
+and 
+\[G(x) = \sum_{n \geq 1}f(-n)xn\]
+are both rational functions satisfying 
+\[G(x) = -F\left(\frac{1}{x}\right).\]
+\end{theorem}
+
+For example, consider $f(n) = c^n$ for $c \neq 0$. Then 
+\[F(x) = 1 + cx + c^2x^2 + \cdots = \frac{1}{1 - cx},\]
+\[G(x) = c^{-1}x + c^{-2}x^2 + \cdots = \frac{c^{-1}x}{1 - c^{-1}x} = \frac{1}{\frac{c}{x} - 1} = -\frac{1}{1 - c\left(\frac{1}{x}\right)} = -F\left(\frac{1}{x}\right).\]
+
+As another example, we might consider $f(n) = \binom{n}{k}$ for $k \geq 0$.
+
+Recall that
+\[\binom{n}{k} - \binom{n-1}{k} = \binom{n-1}{k-1}.\]
+If we multiply by $x^n$ and sum over $n \geq 0$ we get 
+\[F_k(x) - xF_k(x) = xF_{k-1}(x)\]
+Or in other words
+\[F_k(x) = \frac{x}{1-x}F_{k-1}(x) \implies F_k(x) = \frac{x^k}{(1-x)^{k + 1}}.\]
+
+We have as well that 
+\[g(n) = \binom{-n}{k} = (-1)^k\binom{n + k - 1}{k}.\] If we multiply by $x^n$ and sum over all $n \geq 1$ we get 
+\[G(x) = (-1)^k\frac{x}{(1 - x)^{k + 1}}\] from which we can verify Popoviciu's lemma easily.
+
+In general, the general case sort of follows from these two examples. For as in the theorem, $f$, $F$, and $G$ are mutually determining in a linear way, and the determining relations are also linearly related. So it suffices to prove the lemma where $F(x) = \frac{1}{(1 - cx)^k}$ for $c \neq 0, k \geq 1$ since these form a basis for the space of rational functions of $x$ of the form $\frac{P(x)}{Q(x)}$ and $\deg(P) < \deg(Q)$. Or one could see page 206 of Stanley's Enumerative Combinatorics.

@@ -18,4 +18,52 @@ x^n &= \sum_{k = 0}^{\infty}S(n, k)(x)_k \\
 By linear independence it follows that 
 \[\sum_{k = 0}^{\infty}S(n, k)s(k, j) = \begin{cases}1 & n = j \\ 0 & \text{otherwise}\end{cases}.\]
 
-This is perhaps not so surprising on its own: This actually always happens when you consider any change of basis from one basis back to itself. What will be surprising is that $s$ and $S$ have combinatorial meaning. For example, when we derived a formula for the Bell Numbers, we realized $S(n, k)$ as the number of ways of partitioning $\{1, \dots, n\}$ into exactly $k$ disjoint subsets. We will understand the combinatorial meaning of these formulas soon enough.
+This is perhaps not so surprising on its own: This actually always happens when you consider any change of basis from one basis back to itself. What will be surprising is that $s$ and $S$ have combinatorial meaning. For example, when we derived a formula for the Bell Numbers, we realized $S(n, k)$ as the number of ways of partitioning $\{1, \dots, n\}$ into exactly $k$ disjoint subsets. But what about $s(n, k)$?
+
+First, we must observe that $s(n, k)$ is not always positive. It has precisely the same sign as $(-1)^{n-k}$, and we call it a \textit{signed Stirling number of the first kind}. On this note we will denote $c(n, k)$ to be the coefficient of $x^k$ in the polynomial 
+\[r_n(x) = x(x + 1)(x + 2)(\cdots)(x+n-1).\]
+
+\begin{proposition}
+For all positive integers $n, k$, 
+\[c(n,k) = c(n-1, k-1) + (n-1)c(n-1, k).\]
+\end{proposition}
+\begin{proof}
+From the fact that
+\[r_n(x) = r_{n-1}(x)(x + n-1) = xr_{n-1}(x) + (n-1)r_{n-1}(x)\]
+this fact easily follows by degree counting.
+\end{proof}
+ 
+\begin{theorem}
+Let $S_n$ be the symmetric group on $\{1, 2, \dots, n\}$. Then $c(n, k)$ equals the number of elements of $S_n$ with exactly $k$ cycles.
+\end{theorem}
+\begin{proof}
+Let $d(n,k)$ be the number of elements of $S_n$ with exactly $k$ cycles. We will show that $d(n, k)$ follows the same recurrence as $c(n, k)$ with the same initial conditions. 
+
+When $n = 0, k = 0$ we have that $c(n, k) = 1$. When $k = 0, n \neq 0$ we have that $c(n, k) = 0$. Similarly, when $n = 0, k = 0$ there is only one permutation with $0$ cycles, which is the empty permutation, so $d(0, 0) = 1$. If $n \neq 0$ every permutation has at least one cycle so that $d(n, 0) = 1$, as desired.
+
+Suppose that $\sigma$ is any permutation of $[n-1]$ with $k$ cycles. Then there are $n-1$ ways to add the element $n$ into an existing cycle (We add $n$ to a cycle such that $\tilde{\sigma}(n) = i$ for each $1 \leq i \leq n-1$. Also, there's a unique way to create a unique cycle consisting of just the element $n$ in any permutation of $[n-1]$ with $k-1$ cycles. This describes every permutation of $[n]$ with $k$ cycles. It follows that 
+\[d(n,k) = (n-1)d(n-1, k) + d(n-1, k-1).\]
+\end{proof}
+
+Now we will discuss the \textit{Stirling number of the second kind} $S(n, k)$.
+\begin{proposition}
+We have for all $n$ and $k$ that $S(n, k) = S(n-1, k-1) + kS(n-1, k)$.
+\end{proposition}
+\begin{proof}
+Given a partition of $[n]$ into $k$ blocks, removing $n$ gives a partition of $[n-1]$ either with $k$ blocks or with $k-1$ blocks. Conversely, every partition of $[n-1]$ into $k-1$ blocks gives rise to a partition of $[n]$ into $k$ blocks (by adding $\{n\}$) and every partition of $[n-1]$ into $k$ blocks gives rise to $k$ partitions of $[n]$ into $k$ blocks. The recurrence is seen to hold.
+\end{proof}
+
+Here is a claim about the generating function of the Stirling numbers of the second kind:
+
+\begin{proposition}
+For $k \geq 0$ we have that
+\[\sum_{n \geq k}S(n-k)x^n = \frac{x^k}{(1-x)(1-2x)\cdots(1-kx)}.\]
+\end{proposition}
+\begin{proof}
+Sketch: The proposition is true for $k = 1$.
+If we denote $S_k(x) = \sum_{n \geq k}S(n-k)x^n$, we can use the recurrence relation to show that 
+\[S_k(x) = xS_{k-1}(x) + kxS_k(x).\] Rewriting this as
+\[S_k(x) = \frac{x}{1-kx}S_{k-1}(x)\] the inductive hypothesis will prove the claim.
+\end{proof}
+
+As a product of simple looking generating functions the above proposition might have a simpler combinatorial proof. We will see how this will work out in the next section.

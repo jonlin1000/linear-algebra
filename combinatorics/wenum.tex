@@ -36,3 +36,10 @@ as a formal power series in $\mathbb{Q}[w][[x]]$. Using the recurrence for the w
 
 So we get a formula for $p_n'(1)$. Letting $\alpha$ and $\beta$ be the reciprocal roots for $1 - x - x^2$ we get a formula of the form $A\alpha^n + B\beta^n + A'n\alpha^n + B'n\beta^n$ for $p_n'(1)$. Letting $\alpha$ be the larger root (in magnitude) this means $p_n'(1) \sim Cn\alpha^n$ for some constant $C$. It follows that approximately,
 \[\frac{p_n'(1)}{p_n(1)} = \frac{C_1n\alpha^n}{C_2\alpha^n} = Cn\] for some constant $C$.
+
+Now we consider the general problem of tiling the $2 \times n$ grid where each horizontal domino is given weight $xt$ and each vertical domino is given weight $yt$, and the weight of any given tiling is the product of the tile weights. Then what is the sum of all the weights of all the tilings?
+
+For example, when $n = 1$, the sum of the weights is just $yt$, when $n = 2$ it is $(x^2 + y^2)t^2$ and when $n = 3$ it is $(x^2y + x^2y + y^3)t^3$. Now instead of grouping the sum of tiles by the exponent of $t$ we will instead use the number of blocks, where a block consists of either a vertical domino or two horizontal dominoes. By the multiplication principle for generating functions the generating function looks like
+
+\[\sum_{n = 0}^{\infty}(x^2t^2 + yt)^n = \frac{1}{1 - x^2t^2 - yt}.\]
+For example, if $x = 1$ and $y = 1$ then the generating function is as expected (the fibonacci numbers).

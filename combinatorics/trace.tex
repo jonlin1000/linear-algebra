@@ -1,0 +1,32 @@
+The principle here follows from this linear algebraic result:
+\begin{theorem}
+Let $A$ be a square matrix. Define $A_{ij}(n)$ denote the $(i, j)$th entry of $A^n$. Define the generating function
+
+\[F_{ij}(t) = \sum_{n \geq 0}A_{ij}(n)t^n.\]
+
+Then 
+
+\[F_{ij}(t) = \frac{(-1)^{i + j}\det(I - TA;j, i)}{\det(I - tA)}\]
+where $(B;j, i)$ is the matrix obtained by removing the $j$th row and the $i$th column in $B$. In particular, $F_{ij}(t)$ is a rational function of $t$.
+\end{theorem}
+\begin{proof}
+Use Cramer's rule on the matrix product $(I - tA)^{-1}$. I haven't figured out the details yet.
+\end{proof}
+
+Now we will introduce the trace theorem, which has numerous counting applications.
+
+\begin{theorem}
+Define
+\[T(t) = \sum_{n \geq 1} \operatorname{Tr}(A^n)t^n.\]
+Then 
+\[T(t) = \frac{-tQ'(t)}{Q(t)}\] where $Q(t) = \det(I - tA)$.
+\end{theorem}
+\begin{proof}
+Let $\omega_1, \dots, \omega_r$ be the non-zero eigenvalues of $A$. Then
+\[\operatorname{Tr}(A^n) = \omega_1^n + \cdots + \omega_r^n.\] So
+\[T(t) = \frac{\omega_1}{1 - \omega_1t} + \cdots + \frac{\omega_r}{1 - \omega_rt}.\]
+When you divide this by $Q(t) = (1 - \omega_1t)\cdots(1 - \omega_rt)$ the numerator becomes $-tQ'(t)$.
+\end{proof}
+
+We might use this theorem, for example, to count the domino tilings of a $2\times n$ cylinder using the codeword method. We might introduce a cylinder with an identifying vertical line and count the trace (the number of ways that things can go back to each other and whatnot).
+

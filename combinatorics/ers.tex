@@ -1,0 +1,29 @@
+In the previous section, the trace formula had a rational generating function where the degree of the denominator was equal to that of the degree of the numerator. In this section, we will emphasize that such a function cannot satisfy a linear recurrence relation. However, such a sequence is actually ``eventually recurrent'' which we will show below in general with rational generating functions. It boils down to these theorems:
+
+\begin{theorem}
+A sequence $f(0), f(1), f(2), \dots$ which satisfies a linear recurrence equation of the form
+\[f(n + d) + a_1f(n + d - 1) + \cdots + a_df(n) = 0\]
+for all $n \geq 0$ has a generating function of the form 
+\[\sum_{n \geq 0}f(n)x^n = \frac{P(x)}{Q(x)}\]
+Where $Q(x) = 1 + a_1x + \cdots + a_dx^d$ and $\deg(P(x)) < d$.
+\end{theorem}
+
+This was already proven. Here is the other rather trivial theorem:
+
+\begin{theorem}
+A sequence $f(0), f(1), f(2), \dots$ that satisfies $f(n) = 0$ for all but finitely many values for $n$ has a generating function of the form $\sum_{n \geq 0} f(n)x^n = P(x)$ for some polynomial $P$ with degree being the index of the maximum non-zero element of the sequence.
+\end{theorem}
+
+Combining, we obtain the following result.
+
+\begin{theorem}
+Let $f:\mathbb{N} \to \mathbb{C}$ be a sequence and suppose that 
+\[\sum_{n \geq 0}f(n)x^n = \frac{P(x)}{Q(x)}\] for polynomials $P$ and $Q$.
+
+Then there is a function $g: \mathbb{N} \to \mathbb{C}$ that agrees with $f$ outside a finite set of values (which we denote by the exceptional set) such that
+\[\sum_{n \geq 0}g(n)x^n = \frac{R(x)}{Q(x)}\] with $\deg{R} < \deg{Q}$. If the exceptional set is non-empty, then its largest element is $\deg{P} - \deg{Q}$, and the generating function for $f(n) - g(n)$ is a polynomial of degree $\deg(P) - \deg(Q)$.
+\end{theorem}
+
+We say that such a sequence $f$ is ``eventually recurrent''.
+
+Applying this theorem to $f(n) = \operatorname{Tr}(A^n)$ as we have there is a unique way to define $f(0)$ so that it satisfies the linear recurrence equation for $n = 0$ as well as $n > 0$. Namely, this number is the number of non-zero eigenvalues of $A$ (including multiplicity). Does this number have any combinatorial significance?

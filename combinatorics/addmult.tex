@@ -1,0 +1,15 @@
+In this section we'll discuss the addition and multiplication principle for generating functions. They are quite simple.
+
+Suppose some sequence $a_n$ of a type $A$ is either of type $B$ or type $C$ (but not both). Then $a_n = b_n + c_n$ for all $n$. It follows that if $A(x), B(x), C(x)$ are their generating functions then $A(x) = B(x) + C(x)$. This is the Addition Principle for Generating Functions.
+
+Similarly, suppose some sequence $a_n$ of type $A$ can be written in a unique way as a $b_k$ sequence followed by a $c_{n-k}$ sequence. Then $A(x) = B(x)C(x)$. This is the Multiplication Principle for Generating Functions.
+
+These considerations suggest a combinatorial proof of the last proposition of the previous section:
+\begin{proof}
+Given a partition of $[n]$ into $k$ parts, let $B_1$ be the part that contains $1$, $B_2$ be the part that contains the smallest number not in $B_1$, and so on. Every partition of $[n]$ with exactly $k$ parts can be specified by a sequence of length $n$ where the $i$th symbol is $j$ if $i$ belongs to $B_j$. 
+
+For example, $\{\{1, 3\}, \{2, 5\}, \{4\}$ can be associated with the sequence $(1, 2, 1, 3, 2)$. Conversely, every sequence of length $n$ corresponds to a unique partition provided that $1, \dots, k$ are used at least once and $j+1$ does not appear in the sequence until the first $j$ appears.
+
+Then we can break up each sequence into $k$ parts, where the $k$th part is everything from the first $k$ up to and right before the first $k + 1$ (if $k + 1$ appears at all). For example, in the sequence $(1, 2, 2, 1, 3, 2, 4, 2, 5, 1, 2, 3, 6, 5, 6)$ This becomes $(1 | 2, 2, 1 | 3, 2 | 4, 2 | 5, 1, 3 | 6, 5, 6)$. We observe that the $j$th part consists of $j$ followed by elements between $1$ and $j$ inclusive.  The nummber of possible strings of this type of length n is $j^{m-1}$. Hence, the generating function for this is $x/(1-jx)$. By the Multiplication principle for generating functions, the generating function for these sequences is 
+\[\frac{x}{(1-x)}\cdots\frac{x}{(1-kx)},\] proving the claim.
+\end{proof}
