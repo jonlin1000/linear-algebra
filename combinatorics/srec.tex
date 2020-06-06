@@ -1,0 +1,44 @@
+Returning to Catalan Numbers, we will consider the Triangulation formulation of the Catalan Numbers. Let $T(n)$ be the number of triangulations of a convex $(n + 2)$-gon. Directly considering the formula $\frac{1}{n+1}\binom{2n}{n}$ we get the \textbf{short recurrence}
+
+\[(n + 1)T(n) = (4n - 2)T(n-1).\]
+
+We can interpret this result using combinatorial arguments. First, given any triangulation, we define an \textit{edge} as any side or diagonal. When $n = 3$ there are $7$ edges. In general there are $2n + 1$ edges. We will distinguish one side of the $(n + 2)$-gon as the base. The left hand side counts triangulations of the $(n + 2)$-gon with one side marked other than the base. The right hand side counts triangulations of an $(n + 1)$-gon with one of $2n - 1$ edges marked and oriented.
+
+The bijection is as follows: Given the marked edge which is not the base we ``contract'' it so that the marked line itself is identified as one point. We also identify the lines in the triangle that the red triangle shares with two unmarked lines. We identify the other two lines together and direct it in the direction of the vertex which used to be the red line.
+
+Conversely, given a directed $(n+1)$-gon, we create an edge out of the target vertex and split the directed line into two. One can check that these maps are well defined and are inverses of each other, and hence give a bijection between the two. (images needed).
+
+To further show the power of the short recurrence method, we will use it to produce a recurrence for lattice paths with $q$-weight.
+
+Given a lattice path from $(0, 0)$ to $(m, n)$ then we define its weight as $q$ to the power of the total area under the path (this is well defined and integer valued). We denote the sum of weights as $P_{m, n}(q)$. For example, $P_{2,2}(q) = q^0 + q^1 + 2q^2 + q^3 + q^4$. 
+
+To produce a short recurrence for the $q$-weighted lattice paths we will consider an ordinary binomial identity:
+\[\binom{a}{b}b = a\binom{a-1}{b-1}.\] This can be proven by committee leader enumeration. If $a = m + n$ and $b = m$ we can rewrite this identity as
+\[\binom{m + n}{m}m = (m + n)\binom{m + n - 1}{m - 1}.\]
+So we have that
+\[mP_{m, n}(1) = (m + n)P_{m-1, n}(1).\]
+This is a special case of the more general short recurrence.
+\begin{theorem}
+We have 
+\[[m]P_{m, n}(q) = [m + n]P_{m-1, n}(q)\]
+where $[n] = 1 + q + q^2 + \cdots + q^{n-1}$.
+This is called the $q$-analogue of $n$.
+\end{theorem}
+
+\begin{proof}
+We will count the left and right sides and exhibit a bijection.
+
+The left hand side counts lattice paths from $(0, 0)$ to $(m, n)$ with a marked horizontal edge where the area associated with that marked path is defined as the ordinary area plus the $x$-coordinate of the left endpoint of the chosen edge. 
+
+The right hand side counts lattice paths from $(0, 0)$ to $(m-1, n)$ with a marked vertex where the area associated with a marked path is defined as the ordinary area plus the sum of the coordinates of the marked vertex.
+
+The bijection is as follows: we contract the edge to a vertex, and expand the vertex rightwards to create an edge. Clearly it is a bijection, and moreover, it is \textbf{weight-preserving}. This prove the theorem.
+\end{proof}
+
+From this theorem we get the short recurrence 
+\[P_{m, n} = \frac{[n + m]}{[m]}P_{m-1, n}.\] Expanding this out we get
+\[P_{m, n} = \frac{[n + m]}{[m]}\cdot\frac{[n + m - 1]}{[m-1]} \cdot \cdots \cdot \frac{[n + 1]}{[1]}.\]
+
+There are further questions about symmetrical lattice path analogs and $q$-enumerations. We can also consider the relationship between bracket numbers and cyclotomic polynomials. These will be added here if I think about them some more.
+
+We can deduce some properties about $P_{m, n}$ through elementary or geometrical considerations. For example, $P_{m, n} = P_{n, m}$. This is clear because rotation by $45$ degrees diagonally down will give you an appropriate lattice path. We also have that $P_{m, n}$ is palindromic, this is clear because rotation by $180$ will give you a lattice path with area $mn$ minus the original area.

@@ -1,0 +1,15 @@
+Now let's consider the case when $F = \mathbb{R}$. We will define a distance function between $f$ and $g$ to be $2^n$ if the first disagreement of coefficients is at the $x^n$ monomial. Then define the norm of a formal power series to be its distance from $0$. This distance function satisfies the inequality
+\[d(f, h) \leq \max(d(f, g), d(f, h)),\]
+this is called a supermetric/ultrametric inequality. We will apply this distance function to study the equation
+\[D(x) = 1 + x[D(x)]^2\] (which is the generating function relation for the Catalan Numbers).
+\begin{theorem}
+The map $f \mapsto 1 + xf^2$ has a unique fixed point in the ring of formal power series. Then, for any power series $g_0$, if we define $g_0$,  $g_w = xg_{w-1}^2$, then $g_w \to D(x)$ in the ring of formal power series.
+\end{theorem}
+
+\begin{proof}
+Only a sketch. First, we observe that the subset of $f$ such that $f(0) = 1$ is a contains the image of the map in question. Then we can use the contraction mapping principle to show that a fixed point exists. To show it is unique, then we observe that if $f$ and $g$ both have constant term $1$, then $d(1 + xf^2, 1 + xg^2)$ decreases.
+\end{proof}
+
+Now, we might consider the spurious solution to the formal power series of $D(x)$. Can we find an initial position which convergest to it? If we take the initial solution $1/x$ and apply the map above, we don't actually get convergence. However, the map $f \mapsto \frac{1}{f} + \frac{1}{xf}$ seems to work fine. Now what about 
+\[E(x) = 1 + x(E(x))^3\]
+(I think this is the generating function for the Fuss-Catalan numbers of parameter $2$ or $3$). And what about its spurious solutions? It turns out that the spurious solutions are Laurent series in the variable $\sqrt{x}$.

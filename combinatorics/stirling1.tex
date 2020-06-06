@@ -67,3 +67,29 @@ If we denote $S_k(x) = \sum_{n \geq k}S(n-k)x^n$, we can use the recurrence rela
 \end{proof}
 
 As a product of simple looking generating functions the above proposition might have a simpler combinatorial proof. We will see how this will work out in the next section.
+
+\subsection{The Combinatorial Meaning of Stirling Orthogonality}
+
+Above we deduced the formula
+\[\sum_{k = 0}^{\infty}S(n, k)s(k, j) = \begin{cases}1 & n = j \\ 0 & \text{otherwise}\end{cases}\]
+For general $n$, $m$, and $k$. In this subsection we will show that this formula has combinatorial meaning.
+
+To show the sum is $0$, we will use the following principle: suppose that $S$ is a set with a weight function on $S$ and there is some involution $\Phi: S \to S$ which satisfies $W(\Phi(s)) = -W(s)$ for all $s \in S$. Then
+\[\sum_{s \in S}W(s) = 0.\]
+
+To show Stirling orthogonality, then, we will find some sign reversing involution between a combinatorial object.
+
+\begin{definition}
+A \textbf{gadget} of type $(n, m, k)$ (where $n \geq m \geq k$) is a tuple consisting of a partition of $[n]$ into $m$ blocks $B_1, \dots, B_m$ and a permutation of $\{B_1, \dots, B_m\}$ into $k$ cycles.
+We will define the weight of such a gadget to be $(-1)^{m-k}$.
+\end{definition}
+
+So in this way, gadgets realize the Stirling Numbers of both kinds in one setup. With the weight we will find a specific sign reversing involution; then we will be done.
+
+First, we observe that the sum of the weights of all the $(n, m, k)$ gadgets is $S(n, m)s(m, k)$. This follows from the fact that the weight of any $(n,m,k)$ gadget is specified by the sign of the stirling number $s(m, k)$. For the sign-reversing involution, we say a cycle in the gadget $\gamma$ is \textit{ample} if it involves more than one element of $[n]$, that is, either the cycle contains greater than $1$ block or it contains a block with more than $1$ element.
+
+Since $n > k$ there is at least one ample cycle in $\gamma$. Let $x$ be the smallest element of $[n]$ that lies in an ample cycle. If $x$ is in a block with other elements of $[n]$ rip $x$ off to form a new block of size $n$, and put it before the old block of the cycle. For example, if $\gamma$ is of the form
+\[\gamma = \dots(\dots\{x, a, b, \dots\}\dots)\dots\] then we rip off $x$ to create the cycle
+\[\gamma' = \dots(\dots\{x\}\{a, b, \dots\}\dots)\dots.\] Otherwise, if $x$ is in a block by itself, then merge $\{x\}$ with whatever follows it in its cycle.
+
+Then this defines a sign reversing involution, for it changes the number of blocks by $1$, so the weight of each will be negative. So we're done in this case.

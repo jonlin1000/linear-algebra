@@ -1,0 +1,13 @@
+Let's return to the subject of Dyck paths. First, let's weigh each Dyck path according to the area between it and the horizontal axis. More precisely, we say that a Dyck path has weight $q^mx^n$ if its length is $2n$ and the area under the path is $m$.
+
+Let $F(x, q)$ be the sum of all the weights of all the Dyck paths. Then
+\[F(x, q) = 1 + qx + (q^2 + q^4)x^2 + (q^3 + 2q^5 + q^7 + q^9)x^3 + \cdots.\]
+We claim that 
+\[F(x, q) = q + xq(F(xq^2, q)F(x,q).\]
+\begin{proof}
+If a Dyck path from $(0, 0)$ to $(2k, 0)$ has weight $q^mx^k$, then when it is shifted to give a path from $(1, 1)$ to $(2k + 1, 1)$ it contributes $q^{2k}q^mx^k$ to the weight of a longer Dyck path.
+\end{proof}
+
+From the above equation we obtain the identity
+\[F(x, q) = \frac{1}{1 - xqF(xq^2, q)}, F(xq^2, q = \frac{1}{1 - xq^3F(xq^4, q)}, \dots\]
+giving us a continued fraction identity.

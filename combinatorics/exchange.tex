@@ -1,0 +1,24 @@
+It's well known that given an $m \times n$ grid, the number of paths where one can travel along the basis vectors $(1, 0)$ and $(0, 1)$ is $\binom{m + n}{n}$. This approach is also easily generalized for lattice paths in three dimensions: the number of lattice paths of length $(a, b, c)$ from $(0, 0, 0)$ to $(a, b, c)$ is the multinomial coefficient 
+\[\binom{a + b + c}{a, b, c} = \frac{(a + b + c)!}{a!b!c!}.\]
+
+But when we move to three space, we have an extra dimension to work with. So now we might want to consider the number of lattice \textit{surfaces}. Consider the followingn problem: what is the number of lattice surfaces of area $ab + bc + ac$ whose boundary is the non-planar hexagon with vertices
+\[(a, 0, 0), (a, b, 0), (0, b, 0), (0, b, c), (0, 0, c), (a, 0, c)\]
+As a special case for example, what is the number of Art of Problem Solving Default Avatars? We will prove later that the number of such surfaces is
+\[\frac{H(a + b + c)H(a)H(b)H(c)}{H(a + b)H(a + c)H(b + c)}\] where $H(n)$ is the hyperfactorial $1!2!3!\cdots (n-1)!$.
+We'll prove this by bijection to a two dimensional picture (much like the AoPS default avatars) and we will show that this is the number of ways of tiling an $(a,b,c,a,b,c)$ hexagon with unit rhombuses. For $c = 0$ the number of tilings is $1$ (since the placement of rhombuses is forced).
+
+When $c = 1$, the number of tilings is $\frac{(a + b)!}{a!b!}$. This looks very familiar! This can be illustrated by putting some dots through the vertical sections of the tilings. If a dot hits a vertical line, then we draw a path through it. In this way, we actually always get a lattice path.
+
+With $2 \times n$ domino tilings, we can place alternating dots in a certain way and we will so that the tilings count lattice paths of the directed acyclic graph (put the graph here).
+
+For the $3 \times n$ domino tilings, we might place our dots like so (here) in which case the tilings correspond to paths from $s$ to $t$.
+
+But alternatively for this tiling, the tilings instead correspond to non-intersecting lattice paths (called $2$-routings). The number of such paths will be $N(s_1, t_1)N(s_2, t_2) - N(s_1, t_2)N(s_2, t_1)$. To prove this we can use the reflection principle to show that bad rountings where paths intersect can be directly bijected with paths which cross over each other.
+
+Here is the exchange principle, formally stated:
+\begin{theorem}
+Suppose $s_1$ and $s_2$ are sources in a directed acyclic graph and $t_1$ and $t_2$ are sinks with the property that a path that joins $s_1$ to $t_2$ and a path that joins $s_2$ to $t_1$ must have a vertex in common.
+
+Then the number of $2$-routings that join $s_1$ to $t_1$ and $s_2$ to $t_2$ with non-intersecting paths is equal to $N_{11}N_{22} - N_{12}N_{21}$ where $N_{ij}$ is the number of paths from $s_i$ to $t_j$.
+\end{theorem}
+

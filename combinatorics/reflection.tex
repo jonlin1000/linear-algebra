@@ -1,0 +1,9 @@
+In this section we describe the \textit{reflection principle}, which is a bijective principle that comes up when studying graph routings and is very visual and illuminative.
+
+First, let's consider again one of the ways to count the Catalan Numbers. Let $C_n$ be the number of Dyck paths from $(0, 0)$ to $(2n, 0)$ with steps $(1, 1)$ and $(1, -1)$ which do not touch or cross the line $y = -1$.
+
+If we do not have this restriction of intersecting the line $y = -1$ then this number is $\binom{2n}{n}$. Then the number of non-Dyck paths would be
+\[\binom{2n}{n} - \frac{1}{n+1}\binom{2n}{n} = \frac{n}{n+1}\frac{(2n)!}{n!n!} = \binom{2n}{n-1}.\]
+Motivated by the principle ``when there's a nice answer, there's a nice reason'', we will find a purely combinatorial proof of the Catalan Number sequence.
+
+Consider any non-Dyck path, it is characterized by the fact that it intersects the line $y = -1$ eventually. Let $P$ be the first point on the path that lies on $y = -1$. Then create a new path by reflecting everything before $P$ over the line $y = -1$. Then we get a new path, but this time from $(0, -2)$ to $(2n, 0)$. This reflection operation is clearly injective, for the operation of reflecting everything before $P$ over $y = -1$ is its own inverse. Conversely, any path from $(0, -2)$ to $(2n, 0)$ must cross the line $y = -1$. So it follows that there is a non-Dyck path for which its reflection would be the arbitrary path being considered. It follows that the number of non-Dyck paths is counted by $\binom{2n}{n-1}$ (this is the number of total paths from $(0, -2)$ to $(2n, 0)$, as such a path must use $n-1$ $-1$'s.
