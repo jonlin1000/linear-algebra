@@ -1,0 +1,26 @@
+In these notes, we've mainly been talking about power series as \textit{formal} objects through the ring of power series perspective. However, we also have another perspective (from calculus): we can view our objects as actual functions of $x$ with appropriate radius of convergence. This point of view is often useful, as illustrated with the example in this section.
+
+Define
+
+\[r(n) = |\{(a, a'): a \leq a', a, a' \in A, a + a' = n\}|.\]
+
+So $r$ is a function from $\mathbb{Z}^{\geq 0}$ to itself. First we ask, can we choose an infinite set $A$ to make $r(n)$ constant? Since $A$ is infinite, we know that this constant value must be greater than $0$. It follows that $0 \in A$ and that $c = 1$. If we continue we see that $1$, $3$, and $5$ must be in $A$, from which we fail, because then $6$ can be written as two sums. So by considering the properties of ``small numbers'' we see that our original question is negative.
+
+Let's consider a more general (and now possibly true) question. Can we choose $A$ such that $r(n)$ is constant for $n$ large enough? (That is, $r(n)$ is eventually constant.) Let's consider the generating function 
+\[A(x) = \sum_{n \in A}x^n.\]
+Then
+\begin{align*}
+A(x)^2 &= \left(\sum_{n \in A}x^n\right)\left(\sum_{m \in A}x^m\right) \\
+&= \sum_{n, m \in A}x^{n + m} \\
+&= \sum_{k \geq 0}|\{(n, m) in A \mid n + m = k\}|x^k \\
+&= \left(\sum_{k \geq 0}2r(k)x^k\right) - \sum_{n \in A}x^{2n} \\
+&= \left(\sum_{k \geq 0}2r(k)x^k\right) - A(x^2).
+\end{align*}
+
+So we get the identity
+
+\[A(x)^2 + A(x^2) = \sum_{k \geq 0}2r(k)x^k.\]
+Since we are assuming that $2r(k)$ is eventually constant, we get
+\[A(x)^2 + A(x^2) = \sum_{k \geq 0}Cx^k + p(x) = \frac{C}{1-x} + p(x)\] for some polynomial function $p$.
+
+Now we observe that $A(x)$ converges inside the interval $(-1, 1)$. So now this identity is valid over $(-1, 1)$. Here is where we get a contradiction. If $x \to -1^+$, then $A(x)^2 \geq 0$, and $A(x^2) \to A(1) = \infty$, so $A(x)^2 + A(x^2) \to \infty$. But we also have $c/(1 - x) + p(x)  \not\to \infty$. This is a contradiction and so our answer to the modified question is also negative. 
